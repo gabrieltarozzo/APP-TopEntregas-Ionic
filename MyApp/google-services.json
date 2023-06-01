@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "66112101851",
+    "firebase_url": "https://top-entregas2.firebaseio.com",
+    "project_id": "top-entregas2",
+    "storage_bucket": "top-entregas2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66112101851:android:722705a8f1541aa2",
+        "android_client_info": {
+          "package_name": "com.delivery.atalos3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": ""
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "",
+              "client_type": 3
+            },
+            {
+              "client_id": "",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.delivery.atalos3"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

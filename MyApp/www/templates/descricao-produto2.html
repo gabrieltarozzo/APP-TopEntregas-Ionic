@@ -1,0 +1,107 @@
+
+
+<ion-view ng-controller="ProdutosCtrl" title="Produto!" id="desc" class="desc-app">
+   
+
+    <ion-nav-bar class="roxo">
+  
+        <ion-nav-buttons side="left">
+            <button class="button button-icon">
+                <a href="#/meio-a-meio" class="voltarA">
+                    <i class="button icon-left ion-ios-arrow-left button-clear button-dark"><b class="voltarText">Voltar</b> </i>
+                </a>
+            </button>
+        </ion-nav-buttons>
+  
+    </ion-nav-bar>
+    <ion-content class="has-header" overflow-scroll="false" has-bouncing="true" >
+  
+      <ion-list>
+  
+        <ion-item class="card">
+
+
+          <div ng-class="{'tamanhoTT':pizza_meio == '0.00'}">
+          <div class="info-card-home">
+            <div class="roww">
+                <h2> {{loggedin_nome_produto2}}</h2> 
+            </div>
+        </div>
+        </div>
+
+        <div class="tamanhoT" ng-show="pizza_meio == '0.00'">
+                <div class="info-card-home">
+                        <div class="roww">
+                                <h2>   Pizza de calabresa</h2> 
+                  </div>
+              </div>
+              </div>
+
+  
+
+<style>
+    .tamanhoT {
+    width:50%;
+    display: inline-block;
+}
+.tamanhoTT {
+    width:50%;
+    display: inline-block;
+}
+.tamanho {
+    width:50%;
+}
+</style>
+
+  <div ng-class="{'tamanho':pizza_meio == '0.00'}">
+  <section id="labels">
+      <div class="container">
+        <div class="">
+            <div >
+              <div class="dl">
+  
+                <div class="discount alizarin" ng-class="{'esconde':loggedin_promo_valor_produto=='0.00','esconde':loggedin_promo_valor_produto=='0'}"></div><div class="eight" ng-class="{'esconde':loggedin_promo_valor_produto=='0','esconde':loggedin_promo_valor_produto=='0'}" >{{((loggedin_promo_valor_produto/loggedin_valor_produto)*100).toFixed(0)}}% desconto 
+                  <div class="seven"></div></div>
+
+                  
+              <img ng-src="https://topentregas.com.br/imagens_produtos/{{loggedin_imagens_produto2}}" class="bg-card" width="100%" />
+
+             <img ng-controller="ModalAdicional" ng-click="openModalAdicional()" ng-src="https://topentregas.com.br/imagens_produtos/CALABRESA.JPG" class="bg-card-right" width="100%" />
+            
+               </div>
+          </div>
+      </div>
+  </div>
+
+    </section>
+</div>
+
+        </div>
+
+        <div class="roww">
+   <b><h5 class="fontain" >Valor: </b>  <b ng-class="{'esconde':loggedin_promo_valor_produto == '0,00' ,'esconde':loggedin_promo_valor_produto=='','esconde':loggedin_promo_valor_produto=='0'}" style="font-size:17px;color:red;"><strike>{{loggedin_valor_produto | currency: 'R$'}}</strike></b>  <b ng-class="{'esconde':x.promo_valor == '0,00' ,'esconde':loggedin_promo_valor_produto=='','esconde':loggedin_promo_valor_produto=='0'}">por: </b>                <b style="font-size:22px;color:green;">{{loggedin_valor_produto2 - loggedin_promo_valor_produto2 * rofl | currency: 'R$'}}</b>
+  
+        </div>
+<br>
+  
+        <div class="roww">
+          
+        <h2><b>Descrição:</b></h2>
+        <p><p></p></p>
+        <h4>{{loggedin_desc_produto2}} </h4>
+        </div>
+
+        <div align="center" style="margin-top:20px;">
+            <button class="button btn btn-royal button-block" ng-disabled="buttonDisabled" ng-click="GuardaProduto2()" style="width: 85%;font-family:arial;font-size:20px;"><b>Adicionar ao meio a meio</b></button>
+          </div>
+  
+  </ion-item>
+
+
+    </ion-content>
+  </ion-view>
+  
+              
+  
+
+  

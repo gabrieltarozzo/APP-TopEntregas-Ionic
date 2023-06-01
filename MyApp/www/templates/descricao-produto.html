@@ -1,0 +1,403 @@
+
+
+<ion-view ng-controller="ProdutosCtrl" title="Produto!" id="desc" class="desc-app" >
+
+
+  <ion-nav-bar class="roxo">
+
+      <ion-nav-buttons side="right">
+          <button ng-click="Ircarrinho2()" ng-show="loggedin_id" class="button button-icon">
+                  <h1 ng-class="getClass23()">   <i ng-class="getClass()"></i> </h1>
+          </button>
+      </ion-nav-buttons>
+
+      <ion-nav-buttons side="left">
+          <button class="button button-icon">
+              <a ng-click="limparf()"  class="voltarA">
+                  <i class="button icon-left ion-ios-arrow-left button-clear button-light"><b class="voltarText">Voltar</b></i>
+              </a>
+          </button>
+      </ion-nav-buttons>
+
+  </ion-nav-bar>
+  <ion-content class="has-header" overflow-scroll="true" has-bouncing="false"   ng-controller="ModalAdicional">
+
+    <!-- adminCtrl -->
+    <ion-list>
+
+
+      <!-- showAdmins -->
+      <ion-item class="card">
+
+          <!-- tamanho TT e TamanhoT fazem parte da adição de classe para pizza meio a meio -->
+        <div ng-class="{'tamanhoTT':pizza_meio == '0.00'}">
+        <div class="info-card-home">
+          <div class="roww">
+              <h2> {{loggedin_nome_produto}}</h2> 
+          </div>
+      </div>
+      </div>
+          <!-- Criei ouotra estrutura de div para titutlo dos textos -->
+      <div class="tamanhoT" ng-show="pizza_meio == '0.00'">
+              <div class="info-card-home">
+                      <div class="roww">
+                              <h2>   Pizza de calabresa</h2> 
+                </div>
+            </div>
+            </div>
+<!-- teste de css -->
+
+  <!-- Necessarios 3 classes css para divisão das imagens e textos -->
+
+<!-- apliquei classe aqui tambem para meio a meio 
+pensar em algo como, se session(meio a meio) != '' class = "tamanho"  -->
+<div ng-class="{'tamanho':pizza_meio == '0.00'}">
+<section id="labels">
+    <div class="container">
+      <div class="">
+          <div >
+            <div class="dl">
+
+              <div class="discount alizarin" ng-class="{'esconde':loggedin_promo_valor_produto=='0.00','esconde':loggedin_promo_valor_produto=='0'}"></div><div class="eight" ng-class="{'esconde':loggedin_promo_valor_produto=='0','esconde':loggedin_promo_valor_produto=='0'}" >{{((loggedin_promo_valor_produto/loggedin_valor_produto)*100).toFixed(0)}}% desconto 
+                <div class="seven"></div></div>
+          <!-- para mexer na posição do desconto separadamente do desconto precisa fexar as divs corretamente /\-->
+                
+            <img ng-src="https://topentregas.com.br/imagens_produtos/{{loggedin_imagens_produto}}" class="bg-card" width="100%" />
+              <!-- Ultima adição, foi essa outra url de imagem para puxar a segunda div de imagem.. 
+              pensar em algo como se session(meio a meio) != '' então mostrar segunda url de imagem, se for = ''. mostrar imagem indicando o vazio.-->
+           <img 
+            ng-click="openModalAdicional()" ng-src="https://topentregas.com.br/imagens_produtos/CALABRESA.JPG" class="bg-card-right" width="100%" />
+          
+             </div>
+        </div>
+    </div>
+</div>
+
+  </section>
+</div>
+<!-- fim teste css -->
+
+      <!--  <img ng-src="http://localhost/GerencialDelivery/imagens_produtos/{{loggedin_imagens_produto}}" class="bg-card" width="100%"> -->
+      </div>
+
+    <!--   <button ng-controller="ModalAdicional" ng-click="openModalAdicional()" class="btn btn-warning btn-circleN push_buttone" >  <i class="fa fa-list"></i> </button> -->
+
+      <div class="roww" >
+<!-- <b><h5 class="fontain" >Valor: </b>  <b ng-class="{'esconde':loggedin_promo_valor_produto == '0,00' ,'esconde':loggedin_promo_valor_produto=='','esconde':loggedin_promo_valor_produto=='0'}" style="font-size:17px;color:red;"><strike>{{loggedin_valor_produto * rofl + (valorAd * rofl) | currency: 'R$'}}</strike></b>  <b ng-class="{'esconde':x.promo_valor == '0,00' ,'esconde':loggedin_promo_valor_produto=='','esconde':loggedin_promo_valor_produto=='0'}">por: </b>                <b style="font-size:22px;color:green;">{{((loggedin_valor_produto - loggedin_promo_valor_produto) * rofl ) + ( rofl * valorAd )   | currency: 'R$'}}</b> -->
+  <b><h5 class="fontain" >Valor: </b>  <b ng-class="{'esconde':loggedin_promo_valor_produto == '0,00' ,'esconde':loggedin_promo_valor_produto=='','esconde':loggedin_promo_valor_produto=='0'}" style="font-size:17px;color:red;"><strike>{{loggedin_valor_produto | currency: 'R$'}}</strike></b>  <b ng-class="{'esconde':x.promo_valor == '0,00' ,'esconde':loggedin_promo_valor_produto=='','esconde':loggedin_promo_valor_produto=='0'}">por: </b>                <b style="font-size:22px;color:green;">{{(loggedin_valor_produto - loggedin_promo_valor_produto)   | currency: 'R$'}}</b> 
+  <p></p>
+ 
+      </div>
+<br>
+  <!-- meio a meio aqui !!!!!
+      <div  align="center"><button class="btn btn-warning btn-circleN push_buttone" style="width:40%;font-size:14px;" 
+          ng-click="meioameio()"><b style="font-size:14px;text-decoration:none;color:white;"> Meio a meio? </b>  <i class="fas fa-forward"></i>
+          </button> </div>
+      <br >-->
+             <!-- <hr style="border-color:black;"> -->
+      <div class="roww" ng-hide="loggedin_desc_produto == '' || loggedin_desc_produto == ' ' || loggedin_desc_produto == 'null' || loggedin_desc_produto == null">
+      <h2><b>Descrição:</b></h2>
+      <p><p></p></p>
+      <h4 >{{loggedin_desc_produto}} </h4>
+      </div><hr ng-hide="loggedin_temcomple == '0'">
+      <!-- Complementos -->
+      <form ng-controller="Complementos" ng-hide="loggedin_temcomple == '0'" >  
+      <br>
+    <h2 style="font-size:23px;font-weight:bold;"> Complementos </h2>
+    <br>
+    <div class="item" style="border-bottom:none;border-top:none;" ng-repeat="y in  showOnlyComplementos "  >  
+        <div>
+            <b class="label1 font18" >{{y.categoriaComplemento}} <p ng-show="y.CompleObriga == 1"><b class="font11black" ng-show="y.CompleObriga == 1"> (Minimo: {{y.qtdMin}} Maximo {{y.qtdMax}}) </b> </P>  <p ng-show="y.CompleObriga == 0"><b class="font11black" ng-show="y.CompleObriga == 0"> (Escolha até  {{y.qtdMax}} complementos) </b> </p><b class="font10red" ng-show="y.CompleObriga == 1"> Obrigatório </b><b class="font10purple" ng-show="y.CompleObriga == 0"> Opcional </b></b>
+           </div> <br>
+        <div class="" ng-repeat="x in  showComplementos | filter:{ numbercomple: y.numbercomple }" >
+               <!--  <div  ng-repeat="y in  showAdicionaisN | filter:{ id: x.adicional_id } " > </div> ng-checked="MEUADICIONAL == y.id" -->
+<input type="checkbox" id="{{x.id}}"  ng-click="clickItem(comple, x.id, y.numbercomple, y.qtdMax)" name="comple[{{y.numbercomple}}]"  ng-model="comple"   />  
+<label  for="{{x.id}}" >
+<span></span>
+<b class="label1 font15" style="white-space:normal;">{{x.nomeComplemento}}</b>
+<p><b class="label2 font15" >(+ {{x.valorComplemento | currency: 'R$'}})</b></p>
+<p><b class="font12" style="white-space:normal;">{{x.descComplemento}}</b></p>
+</label>
+<br>
+<label for="{{x.id}}">
+        <span></span>
+</label>
+</div>
+
+</div>
+<!-- <div align="center" style="margin-top:2%;">
+  <button id="loadbasic" ng-click = "saveB()" style="color:white; width:40%;font-size:17px;"  class="btnet btn--bevel"> <b>Ok </b> </button>   
+  </div> -->
+  <br> 
+  </form>
+  <hr>
+<div align="center">
+  </div>
+      <div ng-show="loggedin_id && x.adicional == 1"  ng-repeat="x in showCategorias | filter:{ id: loggedin_id_cat }">
+              <div   style="margin-top:12px;margin-bottom:19px;" >
+                <!-- <button ng-click="openModalAdicional()"  style="color:white;font-size:17px;" class="btnet btn--bevel" >  <i class="fa fa-list"></i>  </button> -->
+                 <!--  <button ng-click="openModalDesc()" ng-controller="ModalDesc" class="btn btn-warning btn-circleN push_buttone" >  <i class="fa fa-list"></i>  </button> -->
+                 <form ng-controller="Adicionais">  
+                  <h2><b style="font-size:22px;">Adicionais:</b></h2><br>
+                  <div ng-repeat="x in  showAdicionais" >
+                  
+                          <div class="item" ng-repeat="y in  showAdicionaisN | filter:{ id: x.adicional_id } " ng-hide="x.adicional_id == ''">
+                          
+                            
+    <input type="checkbox"  id="{{y.id}}"  name="lst[]"  ng-model="lst" ng-click="change(lst,y.id, y.valor)"  
+      />  
+      <label  for="{{y.id}}" >
+        <span></span>
+        <b class="label1 font15" style="white-space:normal;" >{{y.nome}}</b>
+       <p><b class="label2 font15" >(+ {{y.valor | currency: 'R$'}})</b></p>
+
+      </label>
+
+  </div>
+      </div>
+      
+          <!--   <button id="loadbasic" ng-click = "save()" style="color:white; width:40%;font-size:17px;"  class="btnet btn--bevel"> <b>Ok </b> </button>    -->
+
+         
+            </form>
+      
+                </div> 
+<!-- teste -->
+
+
+   <!-- <div  ng-repeat="l in showAdicionaisCartB " id="here" style="border:solid;width:80%;margin-bottom:5px;border-color:rgb(5, 5, 87);border-width:1px;"> -->
+
+   <!--  <div class="roww" id="teste" ng-repeat="z in  mostrarCertoB | filter:{ id: l.id_complemento } " style="white-space:normal;" > -->
+   
+   <!--  <button ng-click="limparXX({{z.id}})"> X </button> -->
+    <!-- <b style="color:black;">Complemento:</b> <b> {{z.nomeComplemento}} </b> 
+
+<p></p> <b style="color:black;"> Valor: </b> <b style="color:darkgreen;">{{z.valorComplemento | currency: 'R$'}} </b> --> <!-- <button  class="btn btn-warning btn-circleM push_buttone">   <i class="fas fa-times"></i> </button>--> 
+   <!--  </div>    -->
+ <!--</div>-->
+     <!--    <div  ng-repeat="l in showAdicionaisCart " id="here" class="eudiv"> -->
+
+     <!-- <div class="roww" id="teste" ng-repeat="z in  mostrarCerto | filter:{ id: l.id_adicional } " style="white-space:normal;" >      -->
+    <!-- ng-click="limparX({{z.id}})"  -->
+     <!--  <b style="color:black;">Adicional:</b> <b > {{z.nome}} </b> <p></p> <b style="color:black;"> Valor: </b> <b style="color:darkgreen;">{{z.valor | currency: 'R$'}} </b>  <!-- <button  class="btn btn-warning btn-circleM push_buttone">   <i class="fas fa-times"></i> </button>--> 
+
+     <!-- </div>   
+</div>
+
+<!--<button ng-show="LSTverifica != '' " ng-click = "perguntar()" style="color:
+rgb(245, 239, 239);font-family:calibri;font-size:18px;width:60%;margin-
+
+top:3%;padding:0%;"  class="btn-royal btn-circleN btn-green">  <b> Retirar Adicionais  
+
+</b> <i style="margin-left:4%;" class="fas fa-times"></i></button>  --> 
+   
+          </div>
+<!-- fim teste -->
+     <!-- </ion-item> retirei -->
+      <!--Tamanho: <p></p> -->
+      <!-- Meio a meio?  se sim dar um jeito de mostrar maneira de incrementar a outra metade no pedido.<p> -->
+      <!-- Adicionais: ? <p></p> -->
+      <!-- Ingredientes: (Work) <p></p>   {{loggedin_id_produto}} -->
+      <!-- retirei o class="card roww" debaixo -->
+                <!-- os que tiverem x.semObs == 1 ele vai esconder a observação.-->
+     
+  
+      
+      <!-- transformar em text-area -->
+      <!-- retirei o class="card roww" de baixo -->
+      <div style="width:100%;" align="center" ng-show="loggedin_id" id="myId">
+
+      <h2>
+  
+        <b>Quantidade:</b>
+        </h2>
+
+      <div  align="center" style="margin-top:20px;margin-bottom:5px;" ng-controller="Adicionais">
+          <button class="btnet btn--bevel btn-circle "  ng-click="rofl2()"> <b>-</b>     </button>
+          <input class="transpFundo" style="display: inline-block;vertical-align: middle;width:70px;margin-bottom:20px;height:50px;color:black !important; " value="1" readonly ng-model="rofl"  type="number" placeholder="First Name">
+          <button class="btnet btn--bevel btn-circle" style="margin-right:-2px;" ng-click="rofl1()">  <b>+</b>   </button>
+
+         </div> 
+         <b style="color:rgb(44, 3, 3);font-size:15px;"> Valor Final: </b> <b style="font-size:15px;color:rgb(4, 88, 4);">{{((loggedin_valor_produto - loggedin_promo_valor_produto) * rofl ) + ( rofl * valorAd) + ( rofl * valorCd )  | currency: 'R$'}}</b> 
+        </div>
+        <script>
+
+      document.addEventListener('click', evt => {
+          if (evt.path.indexOf(document.querySelector('div.inputcontainer')) < 0) {
+          //  alert('fora no div!');
+           $('#textarea').blur();
+           //cordova.plugins.Keyboard.disableScroll(false);
+          } else {
+           // alert('dentro do div!');
+          // cordova.plugins.Keyboard.disableScroll(true);
+          }
+        }, true);
+
+        </script>
+        <div class="divBox" align="center" style="margin-top:20px;" ng-show="loggedin_id && x.semObs == 1"  ng-repeat="x in showCategorias | filter:{ id: loggedin_id_cat }" >
+      
+            <h5>
+              <div class="form-group">
+                  <h2><b>Observação:</b></h2> 
+               <!--  <textarea   style="width:90%;margin-top:15px;" maxlength="200" rows="3" cols="45" ng-model="form.observacao" type="text" placeholder="(OPCIONAL) Ex: Gostaria que..."> </textarea> -->
+               <section class="full">
+                  <div class="container">
+                        <div >
+                            <div class="form col-sm-8 col-sm-offset-2">
+                                <form>
+                                    <div class="inputcontainer" >
+                                        <textarea rows="4" placeholder="(OPCIONAL) Ex: Gostaria que..." ng-model="form.observacao" class="textarea" id="textarea"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+              </div>
+              </div>
+
+      <div align="center" style="margin-top:20px;">
+          <button class="btnet btn--bevel" ng-disabled="buttonDisabled" ng-click="GuardaProduto()" style="width: 85%;font-family:arial;font-size:20px;margin-bottom:30px;"><b>Adicionar ao Carrinho</b></button>
+        </div>
+
+</ion-item>
+
+  <!-- modal informações do pedido -->
+  <script id = "my-modalAdicional.html" type = "text/ng-template" >
+
+      <ion-modal-view id="status" class="status-app" >
+
+      <ion-nav-bar class="roxo" >
+
+      <ion-nav-buttons side="left">
+          <button ng-click = "closeModalAdicional()" class="button button-icon">
+      <a><i class="button icon-left ion-ios-arrow-left button-clear button-light"></i> </a>
+          </button>
+
+      </ion-nav-buttons>
+  
+  </ion-nav-bar>
+          <ion-content class="has-header" overflow-scroll="true" has-bouncing="false">
+              <div align="center" style="margin-top:5%;">
+              
+              <h2 style="color:black;font-size:25px;"> Adicionais disponiveis:   </h2>
+          <br>
+          <form ng-controller="Adicionais">  
+    
+                  <div class="item" ng-repeat="x in  showAdicionais" >
+       
+                          <div  ng-repeat="y in  showAdicionaisN | filter:{ id: x.adicional_id } " >
+
+          
+    <input type="checkbox"  id="{{y.id}}"  name="lst[]"  ng-model="lst" ng-click="change(lst,y.id)" 
+      />  
+        <label  for="{{y.id}}"><span></span><h2><b class="label1">{{y.nome}}</b> <b class="label2">(+ {{y.valor | currency: 'R$'}})</b></h2></label> 
+                <label for="{{y.id}}"><span></span><h3></h3></label>
+
+  </div>
+      </div>
+   
+
+        <div align="center" style="margin-top:15%;">
+      
+            <button id="loadbasic" ng-click = "save()" style="color:white; width:40%;font-size:17px;"  class="btnet btn--bevel"> <b>Ok </b> </button>   
+
+            </div>
+            </form>
+
+    </ion-content>
+</ion-modal-view>
+</script>
+                          <!-- modal informações do pedido -->
+
+                          <script id = "my-modalPedido.html" type = "text/ng-template" >
+                            <ion-modal-view id="status" class="status-app " >
+                                <ion-content overflow-scroll="true" has-bouncing="false">
+                              <div class="container" align="center">
+                                <div class="card ">
+                              <div class="card-header">
+                              
+                              <strong>     <h4 style="color:Maroon;">  Dia: {{formatDate(x.created) | date:'dd/MM/yyyy'}} </h4> 
+                                <h4 style="color:Maroon;"> Horário: {{formatDate(x.created) | date:'HH:mm'}}  </h4></strong> <p></p>
+                                <h4 class="modalPe ">  Status:  {{x.status}} </h4>
+                              </div>
+
+                              <h4  class="modalPe " ng-hide="x.id_entrega != 1">Tipo de pedido: Retirada</h4> 
+                              <h4  class="modalPe " ng-hide="x.id_entrega != 0">Tipo de pedido: Entrega</h4> 
+                              <div class="card-body">
+                              
+                              <div  align="center">
+                                  <h4 style="color:Maroon;" class="center">Código: #{{x.id}}<br><br></h4>
+
+                                  <div style="border-style: dashed; border-width:2px; border-left:none; border-right:none;" >
+                              <h4 class="center" ng-bind-html="x.nomeProduto" style="color:Maroon;">{{x.nomeProduto}} </h4>
+                                  </div>
+                                  <br>
+                                  <div style="border-style: dashed; border-width:2px;width:50%;" >
+
+                              <h4 class="center" style="color:Maroon;"> Frete: {{x.frete | currency:'R$'}} </h4>
+                
+                             <h4> <strong  ><div align="center">Total: {{x.valor | currency:'R$'}}</div> </strong> </h4>
+                
+                                  </div> 
+                       
+                              <div align="center">
+                            <!--  <button ng-click = "Construcao()" style="color:black;width:80%;" ng-show="x.status != 'Aguardando'" class="button btn btn-green button-block"> Pedir novamente! </button> --> 
+                              <button ng-click = "closeModalPedido()" style="color:black;width:80%;"  class="button btn btn-green button-block"> <b> Fechar </b> </button>
+                              </div>
+                              </div>
+                              </div>
+                              </div>  
+                               </ion-content>
+                            </ion-modal-view>
+                         </script>
+                       <!-- inicio teste modal consequencial -->
+                                                
+                            <script id = "my-ModalDesc.html" type = "text/ng-template" >
+                            <ion-modal-view id="status" class="status-app " >
+                                <ion-content overflow-scroll="true" has-bouncing="false">
+                              <div class="container" align="center">
+                                <div class="card ">
+                              <div class="card-header">
+                              
+                              <strong>     <h4 style="color:Maroon;font-size:19px;"> Deseja escrever alguma observação? </h4> <h4> <P> (Em casos promocionais que te apresentem opções, escreva qual refrigerante deseja)  </h4> </strong>
+
+                              </div>
+
+                              <section class="full">
+                                  <div class="container">
+                                        <div >
+                                            <div class="form col-sm-8 col-sm-offset-2">
+                                                <form>
+                                                    <div class="inputcontainer" >
+                                                        <textarea  rows="4" placeholder="(OPCIONAL) Ex: Gostaria que..." ng-model="form.observacao" class="textarea" id="textarea"></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+              
+                          <div  align="center">
+
+                          <div align="center">
+                        <!--  <button ng-click = "Construcao()" style="color:black;width:80%;" ng-show="x.status != 'Aguardando'" class="button btn btn-green button-block"> Pedir novamente! </button> --> 
+                          <button ng-click = "closeModalDesc()" style="color:black;width:80%;"  class="button btn btn-green button-block"> <b> Fechar </b> </button>
+                          </div>
+                          </div>
+                          
+                          </div>
+                          
+                          </div>
+                            
+                            </ion-content>
+                        </ion-modal-view>
+                      </script>
+
+                                                   <!-- fim modal consequencial -->
+  </ion-content>
+</ion-view>
+
+            
+
+                            <!-- fim modal informações do pedido-->

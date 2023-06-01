@@ -1,0 +1,61 @@
+<ion-view id="status" class="status-app" ng-controller="ProdutosCtrl">
+
+    <ion-nav-bar class="roxo" >
+
+    <ion-nav-buttons side="left">
+        <button ng-click = "closeModalAdicional()" class="button button-icon">
+    <a><i class="button icon-left ion-ios-arrow-left button-clear button-dark"></i> </a>
+        </button>
+
+    </ion-nav-buttons>
+
+</ion-nav-bar>
+        <ion-content class="has-header" overflow-scroll="false" has-bouncing="true">
+            <div align="center" style="margin-top:5%;">
+            
+            <h2 style="color:khaki;font-size:25px;"> Adicionais disponiveis:   </h2>
+  
+        <br>
+
+        <form ng-controller="Adicionais">  
+  
+                <div class="item" ng-repeat="x in  showAdicionais" >
+                    <!--   <div ng-repeat="l in showAdicionaisCart | filter:{ id_adicional: x.adicional_id}"> --> 
+                        <div  ng-repeat="y in  showAdicionaisN | filter:{ id: x.adicional_id } " >
+                       <!--     <div >  -->
+        <!-- <div ng-show="{{y.id}} != primeiroAd || {{y.id}} != segundoAd  
+         || {{y.id}} != terceiroAd  || {{y.id}} == quartoAd  || {{y.id}} == quintoAd  || {{y.id}} == sextoAd  
+         || {{y.id}} == setimoAd  || {{y.id}} == oitavoAd  || {{y.id}} == nonoAd  || {{y.id}} == dezAd  "> -->
+                          
+                
+ 
+
+      <!--  <div ng-repeat="vc in  showAdicionaisCart | filter:{ id_adicional: y.id }">   
+          
+     ng-checked="y.id == vc.id_adicional " -->
+
+<!-- <input   type="radio" id="{{y.id}}" value="{{y.id}}"  name="chk[]" ng-model="lst[0]"  ng-change="change(lst,y.id)"> -->
+ <!-- apenas trocar os inputs, comentando o outro -->
+        
+  <input type="checkbox"  id="{{y.id}}"  name="lst[]"  ng-model="lst" ng-change="change(lst,y.id)" 
+    />  
+      <label  for="{{y.id}}"><span></span><h2><b class="label1">{{y.nome}} {{lst}}</b> <b class="label2">(+ {{y.valor | currency: 'R$'}})</b></h2></label> 
+              <label for="{{y.id}}"><span></span><h3></h3></label>
+   
+       <!-- {{lst}} -->
+   
+</div>
+    </div>
+ 
+        <!---  <h4 class="modalPe" ng-repeat="x in showEnd"> Frete: {{x.frete}}</h4> -->
+      <div align="center" style="margin-top:15%;">
+        <!--   <button ng-click = "Construcao()" style="color:Khaki;" ng-show="x.status != 'Aguardando'" class="button btn btn-green button-block"> Pedir novamente! </button> -->
+          <button id="loadbasic" ng-click = "save()" style="color:khaki;"  class="button btn btn-green button-block"> Ok </button>   
+        <!-- <button  ng-controller="ModalAdicional" ng-click="limpar()" class="btn btn-warning btn-circleN push_buttone" >  <i class="fas fa-times"></i> Limpar Tudo </button> -->
+        
+        <!-- <button ng-click = "closeModalAdicional()" style="color:khaki;"  class="button btn btn-green button-block"> Fechar </button> --> 
+          </div>
+          </form>
+
+  </ion-content>
+</ion-view>

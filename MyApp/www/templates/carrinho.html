@@ -1,0 +1,278 @@
+<ion-view  title="Carrinho" id="carrinho" class="carrinho-app" ng-controller="CarrinhoCtrl" >
+
+  <ion-nav-bar class="roxo">
+
+    <ion-nav-buttons side="left">
+        <button class="button button-icon" ng-controller="voltarButtons" ng-click="MeuProprioVoltarCarrinho()">
+            <i class="button icon-left ion-ios-arrow-left button-clear button-light"></i>
+          </button>
+    </ion-nav-buttons>
+
+</ion-nav-bar>
+<!-- PARA QUE SEJA POSSIVEL CAPTURAR POR $SCOPE.MODEL PRECISA DEFINIR A CONTROLLER DENTRO DO ION-CONTENT ng-repeat="x in showCart | limitTo:1" ng-show="x.nomeProduto != '0'"-->
+  <ion-content   ng-show="showCart.length > '0'" class="has header" ng-class="getClasse()" overflow-scroll="false" has-bouncing="true" scroll="true"  >
+
+    <form class="login-form" name="login-form">
+    <!-- adminCtrl -->
+    <ion-list  >
+      <!-- showAdmins -->
+    
+ <!-- borderino2 -->
+      <ion-item class="card  " ng-repeat="x in showCart ">
+        
+        <div style="background:rgb(245, 242, 206);" >
+        <div class="roww rowww" ng-click="buttonDisabled" style="border:solid;border-width:1px;border-top:none;border-left:none;border-right:none;">
+        <h3 style="color:black;">{{x.nomeProduto}} </h3>  <h4 style="width:100%;font-size:20px;" ng-click="delItemCart({{x.id}})">X</h4> 
+        </div>
+     
+        <img 
+          ng-src="https://topentregas.com.br/imagens_produtos/{{x.imagens}}" 
+          class="bg-card" 
+          width="100%" 
+          responsive
+          placeholder
+          loader-img="img/imagePreloader.gif"
+          loader-styles="width: 240px; height: 120px; left: calc((100% - 120px) / 2); top: calc((100% - 120px) / 2);"
+          style="min-height:56vw;"
+        />
+
+      <!--  <img ng-src="http://localhost/GerencialDelivery/imagens_produtos/{{x.imagens}}" class="bg-card" width="100%"></div> -->
+      <div class="roww" style="border-top:solid;border-width:1px;">
+             <h5 style="color:black;">Valor: <b style="font-size:22px;color:rgb(3, 75, 3);">{{x.valor - x.promo_valor| currency: 'R$'}}</b>
+                <!-- <h3>{{x.valor - x.promo_valor | currency: 'R$'}}</h3> -->
+             </h5>
+         </div>
+      <div class="roww">
+          <h5 style="color:black;">Quantidade: <b style="font-size:22px;color:black;">{{x.quantidade}}</b></h5>
+        </div>
+        <div class="roww" ng-hide="x.observacao == '' || x.observacao == 'undefined' || x.observacao == 'null' ">
+            <h5 style="font-size:14px;color:black;">Observacao:<b style="font-size:14px;color:black;white-space:normal;"> {{x.observacao}}</b></h5>
+          </div>
+                  <div class="roww" ng-hide="x.nomeAd == '' || x.nomeAd == 'undefined' || x.nomeAd == 'null' ">
+            <h5 style="font-size:16px;color:rgb(27, 5, 128);">Adicionais:<b style="font-size:11px;color:black;white-space:normal;"> {{x.nomeAd}} / <B style="color:rgb(3, 75, 3);font-size:14px;"> {{x.valorAd | currency: 'R$'}} </B></b></h5>
+          </div>
+          <div class="roww" ng-hide="x.nomeCd == '' || x.nomeCd == 'undefined' || x.nomeCd == 'null' ">
+            <h5 style="font-size:16px;color:rgb(92, 3, 3);">Complementos:<b style="font-size:11px;color:black;white-space:normal;"> {{x.nomeCd}} / <b style="color:rgb(3, 75, 3);font-size:14px;"> {{x.valorCd | currency: 'R$'}} </b></b></h5>
+          </div>
+        </div>
+
+      </ion-item>
+<script>
+function handleInput(e) {
+   var ss = e.target.selectionStart;
+   var se = e.target.selectionEnd;
+   e.target.value = e.target.value.toUpperCase();
+   e.target.selectionStart = ss;
+   e.target.selectionEnd = se; }
+</script>
+
+      <label class="item-input-coletivando item-floating-label"  style="color:black !important;">
+        <div align="center">
+        <span  style="width:100%;color:black !important;font-size:17px;" class="">Digite seu cupom!</span>
+      <P></P> <b style="font-size:10px;color:rgb(59, 58, 58);"> Utilize como exemplo: cupomdesconto, cupomdesconto2 </b>
+      </div> <br>
+       <input style="color:black !important;" placeholder="Digite aqui seu cupom!"  type="text" id="txtCupom" ng-model="txtCupom" oninput="handleInput(event)">
+    </label> 
+    <div align="center"><br>
+    <button style="width:90%;font-size:17px;margin-bottom:8px;"  ng-click="cupom(txtCupom)"  class="btnet btn--bevel"> Aplicar cupom </button>
+  </div>
+    <br>
+
+    <div ng-controller="paypal" style="padding:10px;"  id="paypal-button-containerr"></div>
+
+    <!--   <h2 style="font-size:20px;">Total Carrinho: <b style="font-size:28px;color:rgb(5, 141, 23);">{{getTotalCAdicional() | currency:'R$' }}</b> </h2>  -->
+    <div style="border-style: dashed; border-width:1px;border-color:black;" >
+    <h2 style="font-size:14px;color:black;">Produtos: <b style="font-size:16px;color:rgb(3, 75, 3);">{{getTotalval() | currency:'R$' }}</b> </h2>  
+    <h2 style="font-size:14px;color:black;" ng-hide="getFrete() == '0'">Frete: <b  style="font-size:16px;color:rgb(3, 75, 3);">{{getFrete() | currency:'R$' }}</b> </h2>
+    <h2 style="font-size:14px;color:black;" ng-hide="getFrete() == '0'">Cupom de desconto: <b  style="font-size:16px;color:rgb(241, 12, 12);">-{{meuDesconto | currency:'R$' }}</b> </h2>
+    <h2 style="font-size:14px;color:black;" ng-hide="getFrete() != '0'">Frete Grátis </h2>
+    <div style="border-style: dashed; border-width:1px;border-color:black;" > </div>
+    <h2 style="font-size:22px;margin:0;padding:10px;color:black;">Total: <b style="font-size:24px;color:rgb(3, 75, 3);">{{getTotal() - meuDesconto | currency:'R$' }}</b> </h2>  
+    </div>
+    <h2 class="textFrete" ng-hide="getFrete() == '0'" style="color:black;" > Frete cobrado de acordo com sua distancia do estabelecimento. </h2>  
+    </ion-list>
+    </form>
+    <br>
+    <div align="center" style="width:100%;">
+    <h2 class="segoe" style="color:black;">{{nomeEmpresaFacil}}</h2> 
+      <!-- ng-hide="getTotal() == '0'" -->
+  
+     <div>
+        
+      <script>
+        //paypal.Buttons().render('#paypal-button-container');
+        // This function displays Smart Payment Buttons on your web page.
+      </script>
+    </body>
+    <!-- <div id="paypal-button"></div>
+    <script>
+    </script>
+ <div id="paypal-button"></div>
+ <div id="paypal-credit-button"></div> -->
+        <br>
+
+      <button  style="width:90%;font-size:17px;margin-bottom:8px;" ng-click="openModalCarrinho()"  ng-disabled="buttonDisabled"  class="btnet btn--bevel" >
+      Confirmar Pedido </button>
+     <!-- <button ng-controller="AdminCtrl" ng-click="goAltEnd()" ng-repeat="x in showEndereco | filter:{ id_usuarios: loggedin_id }" ng-hide="x.rua=='undefined' || x.rua=='' || x.rua== null" type="button" class="button btn btn-green button-block" >
+      Alterar Endereço </button>-->
+     <!--- <button ng-click="buscaFrete()" class="button btn btn-green button-block">Frete! </button> -->
+      <button style="width:90%;font-size:17px;margin-bottom:8px;"  ng-click="showConfirmdelCarrinho()"  class="btnet btn--bevel"> Limpar Carrinho </button>
+    </div>
+    </div>
+       <!--  <h2 style="color:Khaki;">Você também pode retirar no balcão por {{getTotalval() | currency:'R$'}}</h2> -->
+        <div align="center">
+       <button style="width:70%;font-size:17px;margin-bottom:8px;background-color:rgb(228, 82, 24)" ng-click="irParaRetirada()"  class="btnet btn--bevel"> Retirar no balcão </button>
+        </div>
+
+        <!-- modal2 -->
+
+        <script id = "my-ModalPagamento.html" type = "text/ng-template" >
+
+          <ion-modal-view  id="carrinho" class="carrinho-app" >
+  
+          <ion-nav-bar class="roxo" enable-menu-with-back-views="true">
+  
+          <ion-nav-buttons side="left">
+              <button ng-click = "closeModalPagamento()" class="button button-icon">
+          <a><i class="button icon-left ion-ios-arrow-left button-clear button-light"></i> </a>
+              </button>
+  
+          </ion-nav-buttons>
+      
+      </ion-nav-bar>
+      
+              <ion-content ng-controller="validador" ng-show="showCart.length > '0'" class="has header" ng-class="getClasse()" overflow-scroll="false" has-bouncing="true" scroll="true">
+                  <div align="center" style="margin-top:5%;width:100%;">
+                <div align="center" >
+              <br>
+              <h2 style="font-size:23px;width:80%;color:black;">De que forma realizará o pagamento?</h3>
+                <hr style="border-color:black;color:black;">
+              <form class="login-form" name="login-form">
+                  <ion-list ng-class="getClasse()" >
+                      <div>
+                        <div  ng-repeat="x in showCart ">
+                          <div style="border-style: dashed; border-width:1px;border-color:black;padding:5px;text-align:left;"> 
+                          {{x.quantidade}}X {{x.nomeProduto}}   <p> Valor Un: {{x.valor - x.promo_valor | currency: 'R$'}} </p>
+                          <p ng-show="x.nomeAd"> Adicionais: {{x.nomeAd}}  {{x.valorAd | currency: 'R$'}} </p> <p ng-show="x.nomeCd"> Complementos: {{x.nomeCd}} {{x.valorCd | currency: 'R$'}} </p>
+                          <p ng-show="x.observacao" > Observação: {{x.observacao}}</P>
+                          </div>
+                        </div>
+
+            <div style="border-style: dashed; border-width:1px;border-color:black;" >
+                <h2 style="font-size:14px;color:black;">Produtos: <b style="font-size:16px;color:rgb(3, 75, 3);">{{getTotalval() | currency:'R$' }}</b> </h2>  
+                <h2 style="font-size:14px;color:black;" ng-hide="getFrete() == '0'">Frete: <b  style="font-size:16px;color:rgb(3, 75, 3);">{{getFrete() | currency:'R$' }}</b> </h2>
+                <h2 style="font-size:14px;color:black;" ng-hide="getFrete() == '0'">Cupom de desconto: <b  style="font-size:16px;color:rgb(241, 12, 12);">-{{meuDesconto | currency:'R$' }}</b> </h2>
+                <h2 style="font-size:14px;color:black;" ng-hide="getFrete() != '0'">Frete Grátis </h2>
+                <div style="border-style: dashed; border-width:1px;border-color:black;" > </div>
+                <h2 style="font-size:22px;margin:0;padding:10px;color:black;">Total: <b style="font-size:24px;color:rgb(3, 75, 3);">{{getTotal() - meuDesconto | currency:'R$' }}</b> </h2>
+            </div>
+         </div>
+        <br>
+    </div>
+
+    <div align="center" style="width:90%;" ng-controller="salvaCustom">         
+            <div class="input-label inx"  style="width:100%;">
+              <b style="font-size:15px;color:black;"> Pague na entrega: </b>
+            </div>
+            <select  ng-model="Custom" ng-change="salvaCustom()" class="item item-input item-select carrinho-app inx" style="border-color:black;color:black !important;" >
+              <option   class="enx" selected>Dinheiro</option>
+              <option  class="enx">Cartão de Débito</option>
+              <option class="enx">Cartão de Crédito</option>
+              <option  class="enx"> Sodexo Refeição</option>
+              <option  class="enx">Alelo Refeição</option>
+            </select>
+            <ion-list class="login-app" ng-hide="SalvaCustom != 'Dinheiro'" >
+
+                <label class="item-input-coletivando item-floating-label"  style="color:black !important;">
+                    <span  style="width:100%;color:black !important;" class="input-label">Troco para quanto?</span>
+                   <input style="color:black !important;" maxlength="9" placeholder="R$0,00 - Não preciso de troco!" type="text" ng-model="money" ng-change="salvaCustomValor()" ui-money-mask currency-symbol="R$">
+                </label>  
+              </ion-list>
+              <br>
+                <button ng-click="showConfirm()"  ng-disabled="buttonDisabled"  style="width: 80%;font-size:17px;" class="btnet btn--bevel" >
+                  Confirmar </button>
+                  <br>
+                   <div style="border:solid;margin-top:10%;border-width:1px;">
+                    <div class="input-label inx"  style="width:100%;">
+                      <b style="font-size:15px;color:black;"> Pague online: </b>
+                    </div>
+                        <div> 
+                          <div ng-click="myButtonClose()" style="padding:10px;" id="paypal-button-container"></div>
+                          <!-- <div style="padding:10px;"  id="paypal-button-containerrr"></div> -->
+                      </div> <br>
+                    </div>
+              <!--  <button ng-click="renderButton()"  ng-disabled="buttonDisabled"  style="width: 60%;font-size:17px;" class="btnet btn--bevel" > Opções </button>
+                  <h2 style="color:Khaki;">Ou retire no balcão por {{getTotalval() | currency:'R$'}}</h2>
+                  <div align="center">
+                 <button style="width:70%;color:Khaki;" ng-click="irParaRetirada()"  class="button btn btn-green button-block"> Retirar no balcão </button>
+                  </div>-->
+              </form>
+        </ion-content>
+    </ion-modal-view>
+  </script>
+<!-- modal -->
+        <script id = "my-ModalCarrinho.html" type = "text/ng-template" >
+          <ion-modal-view id="status" class="status-app" >
+          <ion-nav-bar class="roxo"  >
+          <ion-nav-buttons side="left">
+              <button ng-click = "closeModalCarrinho()" class="button button-icon">
+          <a><i class="button icon-left ion-ios-arrow-left button-clear button-light"></i> </a>
+              </button>
+  
+          </ion-nav-buttons>
+      
+      </ion-nav-bar>
+              <ion-content class="has-header" overflow-scroll="false" has-bouncing="true">
+                  <div align="center" style="margin-top:5%;">
+              <br>
+  
+              <form >  
+                  <h2 style="font-size:28px;width:100%;color:black;">O endereço está correto?</h2>
+                    <hr>
+                  <ion-item class="card" style="background-color:#EEE8AA;" ng-repeat="x in showEnd" >
+       
+
+                      <br>
+                     <h2 class="estiloEnderecoTitle"> <b> Entrega em: </b> </h2> 
+                     <br>
+                      <h2 class="estiloEnderecoDesc">{{x.cidade}} - {{x.uf}}</h2>
+                        <h2 class="estiloEnderecoDesc">{{x.bairro}}</h2>
+                          <h2 class="estiloEnderecoDesc"> {{x.rua}} - {{x.numero}}</h2>
+                          <h2 class="estiloEnderecoDesc" ng-hide="x.complemento == 'undefined' || x.complemento == '' || x.complemento == null  "> Complemento: {{x.complemento}} </h2>
+                          <h2 class="estiloEnderecoDesc" ng-show="x.complemento == 'undefined' || x.complemento == '' || x.complemento == null  "> Sem Complemento </h2>
+                          <br>
+              
+                    </ion-item>
+                    <div align="center">
+                    <button ng-click="closeeAltera()" style="width: 80%;margin-bottom:10%;font-size:18px;"  ng-disabled="buttonDisabled"  class="btnet btn--bevel" >
+                       Alterar Endereço </button>
+                    </div>
+                    
+                <button ng-click="process()" style="width: 80%;font-size:18px;" ng-disabled="buttonDisabled"  class="btnet btn--bevel" >
+                  Confirmar Endereço </button>
+                </form>
+  
+        </ion-content>
+    </ion-modal-view>
+  </script>
+
+  </ion-content>
+
+
+
+<!--
+  
+<div align="center" style="margin-top: 50%" ng-hide="getTotalval() != '0'">
+
+
+    <h1>Parece que seu carrinho de compras está vazio...</h1>
+    <br>
+        <img ng-src="http://topentregas.com.br/imagens/cart.png" class="bg-card" width="20%"> 
+    <h1>Experimente adicionar algumas compras.</h1>
+    <br>
+
+
+</div>   <img ng-src="http://localhost/GerencialDelivery/imagens_produtos/cart_empty" class="bg-card" width="100%"> 
+ -->
+ </div>  
+</ion-view>

@@ -1,0 +1,72 @@
+
+<ion-view id="lista" ng-controller="CuponsCtrl"  title="Cupons"  class="index-app">
+    <link rel="manifest" href="../manifest.json">
+<!-- title="Cardápio - {{mostraHor()}}" <marquee LOOP=4 DIRECTION=RIGHT BEHAVIOR=ALTERNATE> </marquee>  - {{mostraHor()}} " -->
+<style>
+.bgx.active {display:none; }
+</style>
+
+<ion-nav-bar class="roxo" >
+    <ion-nav-buttons side="right">
+        <DIV STYLE="WIDTH:100%;">
+           
+        <button ng-click="Ircarrinho()" ng-show="loggedin_id" class="button button-icon">
+          <h1 ng-class="getClass23()"> <i ng-class="getClass()"></i> </h1>
+        </button>
+
+    </DIV>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="left">
+        <button class="button button-icon">
+            <a href="#/tab/main" class="voltarA">
+                <i class="button icon-left ion-ios-arrow-left button-clear button-light"><b class="voltarText">Voltar</b></i>
+            </a>
+        </button>
+    </ion-nav-buttons>
+</ion-nav-bar>  
+
+<ion-content class="has-header" overflow-scroll="false" has-bouncing="true">
+    <ion-list>
+          <br>
+        <ion-item class="card" style="border:solid; border-color:black;border-radius:10px;" ng-repeat="x in  ShowCupom | filter: { empresa: Empresa.numero} | orderBy: predicate " >
+            <!-- href="#/produtos/{{x.id}}" talvez seja possivel se eu armazenar o id da categoria no storage e pegar o id na proxima tela para usar como filtro.. -->
+            <div class="info-card-home">
+                <div class="row">
+                    <div class="col col-5 left" >
+                    <h3 style="font-size:18px;font-weight:bold;" align="center"> Utilize o código:  </h3> <h2> {{x.nomeCupom}}</h2>
+                    <h3 style="font-size:18px;font-weight:bold;" align="center"> E ganhe um desconto de: </h3> <h2 > {{x.valor | currency:'R$' }}</h2>
+                    <h3 style="font-size:18px;font-weight:bold;" align="center"> Quantidade disponível: <b style="font-size:22px;color:rgb(97, 11, 11);"> {{x.qtdCupom}}</b style="font-size:14px;"> </h3> 
+                        <h3 style="font-size:18px;font-weight:bold;" align="center"> Pedido minimo: <b style="font-size:22px;color:rgb(97, 11, 11);"> {{x.pedidoMinimo | currency:'R$' }}</b style="font-size:14px;"> </h3> 
+                    </div>
+                </div>
+                <!--<img ng-src="http://localhost/GerencialDelivery/imagens_categoria/{{x.imagens}}" class="bg-card" width="100%"> -->
+            </div>
+        </ion-item>
+      <!--    <ion-item class="PulaShow" ng-show="data == undefined" align="center" > 
+        <div class="info-card-home">
+            <div class="row">
+                <div class="col col-5 left" >
+              <h2 style="color:rgb(8, 8, 7);"> Não há cupons disponiveis por enquanto! </h2>
+                </div>
+            </div>
+        </div>
+   
+   
+    
+        </ion-item> -->
+
+            <!-- href="#/produtos/{{x.id}}" talvez seja possivel se eu armazenar o id da categoria no storage e pegar o id na proxima tela para usar como filtro.. -->
+    </ion-list>
+
+        <br>
+
+
+
+
+</ion-content>
+<div align="center" style="color:rgba(78, 81, 83, 0.185);position:absolute;margin-left:30%;margin-top:60%;">
+    <i style="font-size:23vh;" class="fas fa-tags"></i>
+    </div>
+</ion-view>
+

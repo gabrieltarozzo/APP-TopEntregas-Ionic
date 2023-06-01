@@ -1,0 +1,52 @@
+<ion-view id="index" title="Nossas Novidades" class="index-app">
+    <ion-nav-bar class="roxo">
+
+    </ion-nav-bar>
+    <ion-navbar *navbar secondary>
+
+          </ion-navbar>
+    <ion-content class="has-header" overflow-scroll="false" has-bouncing="true">
+        <!-- adminCtrl -->
+        <ion-list ng-controller="NovidadeCtrl">
+            <!-- showAdmins -->
+            <ion-item ng-repeat="x in  showNovidades | filter:{ situacao_id: '1' } | filter:{ empresa:Empresa.numero}" class="card">
+                <div ng-click="pegarID({{'x.nome'}}, {{x.id}}, {{'x.descricao'}}, {{'x.imagens'}})">
+                    <div class="info-card-home">
+                        <div class="row">
+                            <div class="col col-5 right">
+                                <h2>{{x.nome}}</h2>
+                            </div>
+                        </div>
+
+                    </div>
+                    <img 
+                        ng-src="https://topentregas.com.br/imagens_novidades/{{x.imagens}}" 
+                        class="bg-card" 
+                        width="100%" 
+                        ng-image-appear
+                        responsive
+                        placeholder
+                        loader-img="img/imagePreloader.gif"
+                        loader-styles="width: 240px; height: 120px; left: calc((100% - 120px) / 2); top: calc((100% - 120px) / 2);"
+                        style="min-height:56vw;"
+                    />
+
+                </div>
+                <div align="center" style="margin:5%;">
+                    <button class="btnet btn--bevel" ng-disabled="buttonDisabled" ng-click="pegarID({{'x.nome'}}, {{x.id}}, {{'x.descricao'}}, {{'x.imagens'}})" style="width: 85%;font-family:arial;font-size:18px;"><b>Saiba mais!</b></button>
+                  </div>
+
+            </ion-item>
+
+        </ion-list>
+
+      <!--   <div align="center">
+            <video width="320" height="240" controls="controls">
+              <source src="https://topentregas.com.br/imagens_novidades/dica.mp4" type="video/mp4">
+  
+            Seu navegador não suporta HTML5.
+          </video>
+      </div>
+  -->
+    </ion-content>
+</ion-view>

@@ -1,0 +1,41 @@
+<ion-view id="login" title="Editar Perfil" class="login-app">
+
+
+    <ion-nav-bar class="roxo">
+  
+        <ion-nav-buttons side="left" animation="slide-left-right">
+            <button class="button button-icon">
+                <a href="#/admin-edit" class="voltarA">
+                    <i class="button icon-left ion-ios-arrow-left button-clear button-light"><b class="voltarText">Voltar</b> </i>
+                </a>
+            </button>
+        </ion-nav-buttons>
+    
+    </ion-nav-bar>
+  
+  
+    <ion-content overflow-scroll="false" has-bouncing="true" ng-controller="PerfilCtrl">
+  
+      <form ng-controller="AdminCtrl" class="login-form" >
+
+  <br>
+  <h4 class="admin-edit-title"> Alterar seu nome ?</h4>
+          <input type="hidden" ng-model="adminData.id">
+  
+  
+          <label class="item-input-coletivando item-floating-label">
+              <span class="input-label">Nome</span>
+              <input id="txtNome" maxlength="25" type="text" placeholder="Novo Nome [Max 25 letras]" ng-model="adminData.nome" />
+          </label>
+  
+  
+  
+          <div align="center">
+            <button ng-click="editAdmin()" ng-disabled="buttonDisabled" class="btnet btn--bevel margin-top" style="font-size:18px;width:80%;" type="submit">Alterar Nome</button>
+          </div>
+
+  
+      </form>
+    </ion-content>
+  
+  </ion-view>

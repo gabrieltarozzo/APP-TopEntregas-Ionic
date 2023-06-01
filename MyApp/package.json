@@ -1,0 +1,64 @@
+{
+  "name": "myapp",
+  "version": "1.1.1",
+  "description": "MyApp: An Ionic project",
+  "dependencies": {
+    "angular-input-masks": "^4.2.1",
+    "braintree-web": "^3.58.0",
+    "cordova-android": "8.1.0",
+    "cordova-ios": "4.1.0",
+    "cordova-plugin-android-support-v4": "^21.0.1",
+    "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-fcm": "2.1.2",
+    "cordova-plugin-ionic-keyboard": "^2.1.3",
+    "cordova-plugin-ionic-webview": "^1.2.1",
+    "cordova-plugin-splashscreen": "^4.1.0",
+    "cordova-plugin-whitelist": "^1.3.3",
+    "gulp-concat": "^2.2.0",
+    "gulp-minify-css": "^0.3.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^2.0.4",
+    "ng-image-appear": "^1.11.11",
+    "paypal-checkout": "^4.0.311",
+    "q": "^1.5.1"
+  },
+  "devDependencies": {
+    "@ionic/lab": "1.0.7",
+    "@ionic/v1-toolkit": "1.0.6",
+    "bower": "^1.8.4",
+    "gradle": "^1.0.9",
+    "gulp": "^4.0.0",
+    "gulp-util": "^2.2.14",
+    "shelljs": "^0.3.0"
+  },
+  "cordovaPlugins": [
+    "cordova-plugin-device",
+    "cordova-plugin-console",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-statusbar",
+    "ionic-plugin-keyboard"
+  ],
+  "cordovaPlatforms": [
+    "ios",
+    {
+      "platform": "ios",
+      "version": "",
+      "locator": "ios"
+    }
+  ],
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-fcm": {}
+    },
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  }
+}

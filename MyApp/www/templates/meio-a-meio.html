@@ -1,0 +1,80 @@
+<ion-view ng-controller="ProdutosCtrl" title="Nossos Produtos" id="produtos" class="produtos-app">
+
+    <ion-nav-bar class="roxo">
+
+        <ion-nav-buttons side="left">
+            <button class="button button-icon">
+                <a href="#/descricao-produto"  class="voltarA">
+                    <i class="button icon-left ion-ios-arrow-left button-clear button-dark"><b class="voltarText">Voltar</b> </i>
+                </a>
+            </button>
+        </ion-nav-buttons>
+
+    </ion-nav-bar>
+
+    <ion-content class="has-header" overflow-scroll="false" has-bouncing="true">
+
+        <!-- adminCtrl -->
+        <ion-list>
+            <!-- showAdmins -->                                                                                
+            <ion-item class="card" ng-repeat="x in  showProdutos | filter:{ categoria_produtos_id: loggedin_id_cat } | filter:{ situacao_id:'1'} "
+                ng-click="pegarIDProduto2({{'x.nome'}}, {{x.id}}, {{'x.descricao'}}, {{'x.valor'}}, {{'x.promo_valor'}}, {{'x.imagens'}})">
+
+                
+                <div class="info-card-home">
+                    <div class="roww">
+
+                        <h2>{{x.nome}}</h2>
+                    </div>
+                </div> 
+             <!--   <div style="position:absolute;margin-top:10%;margin-left:55%; right: 0;  left: 0; top:0;" >
+                           <h2 style="float:left;color:red;font-size:19px;"><b>{{x.nome}}</b></h2>
+                    </div> -->
+
+                <!--<img ng-src="http://localhost/GerencialDelivery/imagens_produtos/{{x.imagens}}" class="bg-card" width="100%">-->
+                <section id="labels" >
+                    <div class="container">
+                      <div class="row">
+                          <div class="col-sm-6 col-md-3">
+                            <div class="dl">
+                              <div class="discount alizarin" ng-class="{'esconde':x.promo_valor=='' ,'esconde':x.promo_valor=='0'}">   </div><div class="eight"  ng-class="{'esconde':x.promo_valor == '0,00' ,'esconde':x.promo_valor=='','esconde':x.promo_valor=='0'}">{{((x.promo_valor/x.valor)*100).toFixed(0)}}% desconto  
+                                <div class="seven"  ng-class="{'esconde':x.promo_valor == '0,00' ,'esconde':x.promo_valor=='','esconde':x.promo_valor=='0'}"></div></div>
+                            <img 
+                                ng-src="https://topentregas.com.br/imagens_produtos/{{x.imagens}}" 
+                                class="bg-card" 
+                                width="100%" 
+                                ng-image-appear
+                                responsive
+                                placeholder
+                                loader-img="img/imagePreloader.gif"
+                                loader-styles="width: 240px; height: 120px; left: calc((100% - 120px) / 2); top: calc((100% - 120px) / 2);"
+                                style="min-height:56vw;"
+                            />
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                  </section>
+           
+                </div>
+               
+                <div class="roww">
+                 <b>   <h2>Valor: </b>  <b ng-class="{'esconde':x.promo_valor=='','esconde':x.promo_valor=='0'}" style="font-size:17px;color:red;"><strike>{{x.valor | currency: 'R$'}}</strike></b>  <b ng-class="{'esconde':x.promo_valor == '0,00' ,'esconde':x.promo_valor=='','esconde':x.promo_valor=='0'}">por: </b>                <b style="font-size:22px;color:green;">{{x.valor - x.promo_valor | currency: 'R$'}}</b>
+                       <!-- <h3>{{x.valor - x.promo_valor | currency: 'R$'}}</h3> -->
+                   <!-- </h2> -->
+                   
+                </div> 
+                
+                <br>
+
+            </ion-item>
+
+        </ion-list>
+
+
+
+
+    </ion-content>
+
+
+</ion-view>

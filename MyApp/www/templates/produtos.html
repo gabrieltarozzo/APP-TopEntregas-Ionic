@@ -1,0 +1,227 @@
+<ion-view ng-controller="ProdutosCtrl" title="Nossos Produtos" id="produtos" class="produtos-app">
+
+  <ion-nav-bar class="roxo">
+
+      <ion-nav-buttons side="right">
+          <DIV STYLE="WIDTH:100%;">
+             
+          <button ng-click="Ircarrinho()" ng-show="loggedin_id" class="button button-icon">
+            <h1 ng-class="getClass23()"> <i ng-class="getClass()"></i> </h1>
+          </button>
+ 
+      </DIV>
+      </ion-nav-buttons>
+
+      <ion-nav-buttons side="left">
+          <button class="button button-icon">
+              <a href="#/tab/lista" class="voltarA">
+                  <i class="button icon-left ion-ios-arrow-left button-clear button-light"><b class="voltarText">Voltar</b></i>
+              </a>
+          </button>
+      </ion-nav-buttons>
+
+  </ion-nav-bar>
+
+<style>input::-webkit-input-placeholder  { 
+  color:rgb(3, 3, 3) !important ; 
+
+}</style>
+
+
+  <ion-content class="has-header" overflow-scroll="true" has-bouncing="false" >
+      <div align="center" style="position:fixed;width:100%;z-index:9999999;" >
+          <label style="width:100%;background:rgba(187, 184, 184, 0.671);z-index:2;" class="item-input" id="prDios-search2">
+          <i  style="color:black;font-size:20px;" class="icon ion-search placeholder-icon"></i>
+              <input style="font-size: 15px; color:rgb(3, 3, 3) !important; font-weight: bold;text-transform: uppercase;" type="search" ng-click="scrollTo()" ng-model="searchText" placeholder="Localizar">
+            </label>
+          </div>
+      <!-- adminCtrl -->
+      <ion-list>
+
+    <!-- frutas // necessario aplicar os valores corretos(banner de promoção para mostrar o valor real de promoção -->
+<style>
+.ion-modal-view {width: 90%; height: 30%;}
+</style>
+                          <script id = "my-modalPedido.html" type = "text/ng-template" >
+                            <ion-modal-view id="status" class="status-app "  >
+                                <ion-nav-bar class="roxo">
+                                    <ion-nav-buttons side="right">
+                                        <DIV STYLE="WIDTH:100%;">
+                                        <button ng-click="Ircarrinho()" ng-show="loggedin_id" class="button button-icon">
+                                          <h1 ng-class="getClass23()"> <i ng-class="getClass()"></i> </h1>
+                                        </button>
+                                    </DIV>
+                                    </ion-nav-buttons>
+                                
+                                    <ion-nav-buttons side="left">
+                                        <button class="button button-icon">
+                                            <a ng-click="closeModalPedido()" class="voltarA">
+                                                <i class="button icon-left ion-ios-arrow-left button-clear button-light"><b class="voltarText">Voltar</b></i>
+                                            </a>
+                                        </button>
+                                    </ion-nav-buttons>
+                            
+                                </ion-nav-bar>
+                              <ion-content overflow-scroll="true" has-bouncing="false">
+                              <div class="container" align="center" >
+                              <div class="card " style="margin-top:20%;">
+                              <div class="card-header">
+                               <h2 style="text-align:justify;margin:5px;"> <div align="center"> {{descricaoc}} </div> </h2>
+                              </div>
+                              <div align="center">
+                            <!--  <button ng-click = "Construcao()" style="color:black;width:80%;" ng-show="x.status != 'Aguardando'" class="button btn btn-green button-block"> Pedir novamente! </button> --> 
+                              <button ng-click = "closeModalPedido()" style="color:white;width:80%;font-size:18px;margin-top:5%;margin-bottom:5%;"  class="btnet btn--bevel"> Fechar </button>
+                              </div>
+                              </div>
+                              
+                              </div>
+                              
+                              </div>
+                                
+                               </ion-content>
+                            </ion-modal-view>
+
+                            
+                          </script>
+
+     <div  style="margin-top:80px;"> <!-- era 10xpx -->
+  <div class="list width100" ng-repeat="x in  showProdutos | filter:searchText | filter:  { categoria_produtos_id: loggedin_id_cat } | filter:{ situacao_id:'1'} | filter:{ empresa: Empresa.numero} | orderBy: 'valor':false " 
+  ng-hide="loggedin_id_cat != '140'" >
+          <div class="item item-thumbnail-left Margin10Pad" ng-cloak >
+                  <a class="item item-thumbnail-left custom-thumbnail tst"  >
+
+                    <img  ng-src="https://topentregas.com.br/imagens_produtos/{{(x.imagens)}}" 
+                    class="bg-card bgzim" 
+                    ng-image-appear
+                    responsive
+                    placeholder
+                    loader-img="img/imagePreloader.gif"
+                    loader-styles="width: 340px; height: 120px; left: calc((100% - 120px) / 2); top: calc((100% - 120px) / 2);"
+                   style="height:100%;WIDTH:100%;padding:0px;margin:0px;"
+                     > 
+                  </a>
+                  
+              <div class="iconDesc" ng-click="openModalPedido({{'x.descricao'}})">
+                      <i style="float:right;" class="fas fa-info-circle btn--bevel"></i> 
+                    </div> 
+                
+                 <div align="LEFT" class="titleXNome"  >
+                 <b CLASS="margin10left">   {{x.nome}} </b> 
+                </div>
+                   <!--  <p style="font-size:18px;padding:10px; font-family:arial;"> {{x.descricao}}  </p> -->
+                   
+          <div class="margin10"></div>
+          <p  ng-class="{'esconde':x.promo_valor!='','esconde':x.promo_valor!='0'}" style="margin-bottom:40px;"> <b class="EscondeValor"> Valor: </b>   
+             <b class="valuePrimor">{{x.valor - x.promo_valor | currency: 'R$'}}</b>
+          <div class="marginLeft90"> 
+            <div style="text-align:justify;" >
+                      <p  ng-class="{'esconde':x.promo_valor=='','esconde':x.promo_valor=='0'}"  style="margin-bottom:20px;"> <b  class="ngValor"> Valor: </b> 
+                        <b class="ngValorRed" ng-class="{'esconde':x.promo_valor=='','esconde':x.promo_valor=='0'}" >
+                        <strike>{{x.valor | currency: 'R$'}}</strike></b> <br>
+                        <b ng-class="{'esconde':x.promo_valor == '0,00' ,'esconde':x.promo_valor=='','esconde':x.promo_valor=='0'}" class="EscondeValor"> por: </b>          
+                              <b class="valuePrimor">{{x.valor - x.promo_valor | currency: 'R$'}}</b> </p> 
+                      <br>
+                    </div>
+                  </div>
+                  <div class="margin30" align="center">
+                      <button class="btnet btn--bevel btnMenos" ng-click="qty_decr(item)"> <b>-</b>     </button>
+                      
+                            <!-- <input class="" style="display: inline-block;width:20%;height:50px;font-size:20px;margin-left:15%;" value="1" readonly ng-model="rofl"  type="number" placeholder="First Name">-->
+                           <div style="width:50px;display: inline-block;"> <span  class="quantityItem" id="incr_decr_no" ng-init="item.quantity=1">{{item.quantity}}</span><span  style="font-size:14px;font-weight:bold;">un.</span> </div>
+                           <button class="btnet btn--bevel btnMais" ng-click="qty_incr(item)"><b>+ </b> </button>
+                            <!-- <button class=""  style="width: 100%;font-family:arial;font-size:15px;color:black;margin-top:8%;background-color:transparent;border:solid;border-color:black;"><b>Adicionar ao Carrinho</b></button></p>   -->
+                            <p> <br>  <button class="btnet btn--bevel" ng-click="GuardaProduto3({{'x.nome'}}, {{'x.id'}}, {{'x.valor'}}, {{'x.promo_valor'}}, {{'x.imagens'}}, {{'item.quantity'}})"> 
+                              <div class="pretext font13" > <!--<i class="fas fa-cart-plus"></i>-->
+                                 <b>ADICIONAR AO CARRINHO </b>
+                              </div>
+                          
+                            </button> </p></div>
+
+                 <!-- </a>-->
+
+              </div>
+              
+              </div>
+          </div>
+              <!-- fim frutas -->
+<!-- Inicio modal descrição -->
+
+
+<!-- Fim Modal Descrição -->
+          <!-- showAdmins  borderino-->                                                                                
+          <ion-item class="card" ng-repeat="x in  showProdutos | filter:searchText | filter:{ categoria_produtos_id: loggedin_id_cat } | filter:{ situacao_id:'1'} | filter:{ empresa: Empresa.numero} | orderBy: 'promo_valor':false " 
+              ng-click="pegarIDProduto({{'x.nome'}}, {{x.id}}, {{'x.descricao'}}, {{'x.valor'}}, {{'x.promo_valor'}}, {{'x.imagens'}}, {{'x.temcomple'}})" ng-hide="loggedin_id_cat ==  '140'">
+              
+              <div class="info-card-home">
+                  <div class="roww">
+                      <h2>{{x.nome}}</h2>
+                  </div>
+              </div> 
+
+           <!--   <div style="position:absolute;margin-top:10%;margin-left:55%; right: 0;  left: 0; top:0;" >
+                         <h2 style="float:left;color:red;font-size:19px;"><b>{{x.nome}}</b></h2>
+                  </div> -->
+
+              <!--<img ng-src="http://localhost/GerencialDelivery/imagens_produtos/{{x.imagens}}" class="bg-card" width="100%">-->
+              <section id="labels" >
+                  <div class="container">
+                 
+                          <div class="dl">
+               <!-- tinha aqui ng-show="mostradesconto == 2" -->
+                              <div >
+                            <div  class="discount alizarin" ng-class="{'esconde':x.promo_valor=='' ,'esconde':x.promo_valor=='0'}">   </div><div class="eight"  ng-class="{'esconde':x.promo_valor == '0,00' ,'esconde':x.promo_valor=='','esconde':x.promo_valor=='0'}">{{((x.promo_valor/x.valor)*100).toFixed(0)}}% desconto  
+                              <div class="seven"  ng-class="{'esconde':x.promo_valor == '0,00' ,'esconde':x.promo_valor=='','esconde':x.promo_valor=='0'}"></div></div>
+                          </div>                       
+                          <img 
+                          ng-src="https://topentregas.com.br/imagens_produtos/{{x.imagens}}" 
+                          class="bg-card" 
+                          width="100%" 
+                          ng-image-appear
+                          responsive
+                          placeholder />
+
+                   <!--   loader-img="img/imagePreloader.gif"
+                      loader-styles="width: 240px; height: 120px; left: calc((100% - 120px) / 2); top: calc((100% - 120px) / 2);"
+                      style="height:56vw;"  -->
+                           </div>
+              </div>
+
+                </section>
+         
+              </div>
+             
+              <div class="roww">
+               <b>   <h2>Valor: </b>  <b ng-class="{'esconde':x.promo_valor=='','esconde':x.promo_valor=='0'}" style="font-size:17px;color:red;"><strike>{{x.valor | currency: 'R$'}}</strike></b>  <b ng-class="{'esconde':x.promo_valor == '0,00' ,'esconde':x.promo_valor=='','esconde':x.promo_valor=='0'}">por: </b>                <b style="font-size:22px;color:green;">{{x.valor - x.promo_valor | currency: 'R$'}}</b>
+                     <!-- <h3>{{x.valor - x.promo_valor | currency: 'R$'}}</h3> -->
+                 <!-- </h2> -->
+                 
+              </div> 
+              
+              <br>
+              <!--<div  style="position:absolute;margin-top:50%;margin-left:5%; right: 0;  left: 0; top:0;">
+
+<h2> <b ng-class="{'esconde':x.promo_valor == '0,00' ,'esconde':x.promo_valor=='','esconde':x.promo_valor=='0'}" style="font-size:17px;color:red;"><strike>{{x.valor | currency: 'R$'}}</strike></b>  <b ng-class="{'esconde':x.promo_valor == '0,00' ,'esconde':x.promo_valor=='','esconde':x.promo_valor=='0'}">por: </b> <b style="font-size:22px;color:limeGreen;">{{x.valor - x.promo_valor | currency: 'R$'}}</b>
+              </div> -->
+   
+            <!--  <div align="center" style="width:100%; height:80px; overflow:auto; overflow-wrap: break-word;white-space: normal" >
+         <b>{{x.descricao}}</b>
+          </div>
+          <br> -->
+<!--                
+              <div class="roww"  ng-class="{'esconde':x.promo_valor == '0,00' ,'esconde':x.promo_valor=='','esconde':x.promo_valor=='0'}">
+                 <b>  <h2>Você economiza:</b> <b style="font-size:22px;color:Chocolate;">  {{x.promo_valor | currency: 'R$'}} </b>
+                 
+                  </h2>
+                  <br>
+              </div>-->
+          </ion-item>
+
+      </ion-list>
+
+
+
+
+  </ion-content>
+
+
+</ion-view>

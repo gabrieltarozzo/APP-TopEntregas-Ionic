@@ -1,0 +1,24 @@
+<ion-tabs class="tabs-icon-top tab-coletivando "  ng-controller="menuCar">
+
+  <ion-tab title="Novidades" icon-on="ion-ios-bell" icon-off="ion-ios-bell-outline" href="#/tab/index">
+    <ion-nav-view name="tab-index"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="Cardápio" icon-on="ion-social-buffer" icon-off="ion-social-buffer-outline" href="#/tab/lista">
+    <ion-nav-view name="tab-lista"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Ao voltar do almoço: Falta terminar essa tela no menu, (ou descobrir um jeito de aparecer uma navbar diferente na tela perfil, ) e falta -->
+  <ion-tab title="Carrinho" icon-on="{{getClass}}" icon-off="{{getClass}}" href="#/tab/carrinho" class="{{getClass23}}">
+    <ion-nav-view name="tab-carrinho"></ion-nav-view>
+  </ion-tab> 
+
+  <ion-tab title="Status" icon-on="ion-ios-list" icon-off="ion-ios-list-outline" href="#/tab/status">
+    <ion-nav-view name="tab-status"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="Menu" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline" href="#/tab/main">
+    <ion-nav-view name="tab-main"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>

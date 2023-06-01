@@ -1,0 +1,136 @@
+<ion-view  title="<div style='width:150px;'>Retirada no balcão </div>" id="carrinho" class="carrinho-app">
+
+  <ion-nav-bar class="roxo">
+
+    <ion-nav-buttons side="left">
+          <button ng-controller="voltarButtons" class="button button-icon" ng-click="MeuProprioVoltarRetirada()">
+              <a  class="voltarA">
+                  <i class="button icon-left ion-ios-arrow-left button-clear button-light"> <b class="voltarText">Voltar</b></i>
+              </a>
+                </button>
+          
+      <!--  <button ng-click="ionicGoBack()" class="button button-icon">
+                <i class="button icon-left ion-ios-arrow-left button-clear button-dark"></i>
+        </button> -->
+    </ion-nav-buttons>
+
+</ion-nav-bar>
+
+  <ion-content ng-controller="RetiradaCtrl" class="has header" ng-class="getClasse()" overflow-scroll="false" has-bouncing="true" scroll="true" ng-show="showCart.length > '0'" >
+    <form class="login-form" name="login-form">
+    <!-- adminCtrl -->
+    <ion-list >
+      <!-- showAdmins -->
+      
+      <ion-item class="card "   ng-repeat="x in showCart">
+        <div style="background-color:rgb(245, 242, 206);">
+        <div class="roww" ng-click="buttonDisabled" style="border:solid;border-width:1px;border-top:none;border-left:none;border-right:none;">
+        <h3 style="color:black;">{{x.nomeProduto}}  </h3>   <h4  style="width:100%;font-size:20px;color:black;" ng-disabled="buttonDisabled" ng-click="delItemCart({{x.id}})">X</h4>
+        </div>
+     
+        <img ng-src="http://topentregas.com.br/imagens_produtos/{{x.imagens}}" class="bg-card" width="100%" />
+      <!--  <img ng-src="http://localhost/GerencialDelivery/imagens_produtos/{{x.imagens}}" class="bg-card" width="100%"></div> -->
+      <div class="roww">
+             <h5 style="color:black;">Valor: <b style="font-size:22px;color:Green;">{{x.valor - x.promo_valor| currency: 'R$'}}</b>
+                <!-- <h3>{{x.valor - x.promo_valor | currency: 'R$'}}</h3> -->
+             </h5>
+         </div>
+      <div class="roww">
+          <h5 style="color:black;">Quantidade: <b style="font-size:22px;color:black;">{{x.quantidade}}</b></h5>
+        </div>
+        <div class="roww" ng-hide="x.observacao == '' || x.observacao == 'undefined' || x.observacao == null ">
+            <h5 style="font-size:14px;color:black;">Observacao:<b style="font-size:14px;color:black;white-space:normal;"> {{x.observacao}}</b></h5>
+          </div>
+                            <div class="roww" ng-hide="x.nomeAd == '' || x.nomeAd == 'undefined' || x.nomeAd == null ">
+          <h5 style="font-size:16px;color:rgb(27, 5, 128);" >Adicional:<b style="font-size:11px;color:black;white-space:normal;"> {{x.nomeAd}} / <B style="color:rgb(3, 75, 3);font-size:14px;"> {{x.valorAd | currency: 'R$'}} </B></b></h5>
+        </div>
+        <div class="roww" ng-hide="x.nomeCd == '' || x.nomeCd == 'undefined' || x.nomeCd == 'null' ">
+          <h5 style="font-size:16px;color:rgb(92, 3, 3);">Complementos:<b style="font-size:11px;color:black;white-space:normal;"> {{x.nomeCd}} / <b style="color:rgb(3, 75, 3);font-size:14px;"> {{x.valorCd | currency: 'R$'}} </b></b></h5>
+        </div>
+      </div>
+
+      </ion-item>
+   
+      <h2 ng-show="getTotalval() != '0'" style="font-size:25px;color:black">Total: <b style="font-size:28px;color:rgb(3, 75, 3);">{{getTotalval() | currency:'R$' }}</b> </h2>  
+      <hr />
+
+      <h2 ng-show="getTotalval() != '0'" style="color:black;">Produção do pedido é imediato após a confirmação do estabelecimento.</h2> 
+
+          <!--Total: X R$ {{total | currency}} -->
+    
+    </ion-list>
+
+
+    </form>
+    <br>
+    <h2 class="segoe" style="color:black;">{{nomeEmpresaFacil}}</h2> 
+      <!-- ng-hide="getTotal() == '0'" -->
+     <br>
+     <div align="center">
+     <button ng-click="openModalRetirada()"  ng-disabled="buttonDisabled" style="font-size:18px;width:80%;margin-bottom:4%;" class="btnet btn--bevel" >
+      Ver endereço e confirmar </button>
+    </div>
+    </form>
+
+     <!--- <button ng-click="buscaFrete()" class="button btn btn-green button-block">Frete! </button> -->
+     <div align="center">
+      <button ng-click="showConfirmdelCarrinhoRe()" ng-show="getTotalval() != '0'" style="font-size:18px;width:80%;" class="btnet btn--bevel"> Limpar Pedido </button>
+      </div>
+
+   <!--   <button ng-click="ircarrinhoK()" ng-disabled="buttonDisabled"  class="button btn btn-green button-block" >
+        Pedir Delivery</button> -->
+
+        <script id = "my-ModalRetirada.html" type = "text/ng-template" >
+
+          <ion-modal-view id="status" class="status-app" >
+  
+          <ion-nav-bar class="roxo">
+  
+          <ion-nav-buttons side="left">
+              <button ng-click = "closeModalRetirada()" class="button button-icon">
+          <a><i class="button icon-left ion-ios-arrow-left button-clear button-light"></i> </a>
+              </button>
+  
+          </ion-nav-buttons>
+      
+      </ion-nav-bar>
+              <ion-content class="has-header" overflow-scroll="false" has-bouncing="true">
+                  <div align="center" style="margin-top:5%;">
+              <br>
+  
+              <form >  
+                  <h2 style="font-size:24px;width:100%;color:black;">Confirme o endereço de retirada</h2>
+                    <hr>
+     
+
+                      <br>
+                      <ion-item class="card" style="background-color:#EEE8AA;padding:10px;" >
+                        <br>
+                       <h2 class="estiloEnderecoTitle"> <b>Endereço para retirada:</b> </h2> 
+                       <br>
+                        <h2 class="estiloEnderecoDesc">{{CidadeEnderecoM}}</h2>
+                          <h2 class="estiloEnderecoDesc"> {{BairroEnderecoM}} </h2>
+                            <h2 class="estiloEnderecoDesc"> {{RuaEnderecoM}}</h2>
+                            <br>
+                
+                      </ion-item>
+                          <br>
+              
+              
+                    
+                    <button style="width:95%;font-size:18px;" ng-click="showConfirmRetirada()" ng-show="getTotalval() != '0'" ng-disabled="buttonDisabled"  class="btnet btn--bevel" >
+                      OK! Retirarei neste endereço</button>
+
+                     <!-- <button style="width:90%;" ng-click="entreguem()" ng-show="getTotalval() != '0'" ng-disabled="buttonDisabled"  class="button btn btn-green button-block" >
+                        Não! Prefiro que entreguem</button> -->
+
+                </form>
+  
+        </ion-content>
+    </ion-modal-view>
+  </script>
+
+  </ion-content>
+
+
+</ion-view>

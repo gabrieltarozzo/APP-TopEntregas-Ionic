@@ -1,0 +1,74 @@
+<ion-view>
+  <ion-header-bar align-title="center" class="bar-positive">
+    <a class="button icon-left ion-ios-arrow-left button-clear button-light" href="#/tab/lista"></a>
+
+    <h1 class="title">Criação</h1>
+    <a class="button button-icon icon ion-person-add" href="#/tab/admin-create"></a>
+  </ion-header-bar>
+  <ion-content class="padding">
+
+    <form ng-submit="createAdmin()" ng-controller="AdminCtrl">
+      <div class="list">
+
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input type="text" ng-model="adminData.nome">
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="adminData.senha">
+        </label>
+
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Informe seu cep</span>
+            <input type="text" placeholder="Seu cep" ng-model="cepDigitado">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Numero:</span>
+            <input type="text" placeholder="Numero de sua casa" value="" ng-model="numero" required>
+            <!-- required nao funciona, ver metodo para bloquear cadastro se nao tiver numero -->
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Complemento:</span>
+            <input type="text" placeholder="Seu complemento (Se tiver)" ng-model="complemento">
+          </label>
+
+          <button class="button button-block button-positive" ng-click="consultarEndereco(cepDigitado)">Consultar Endereço</button>
+        </div>
+
+        <ion-list ng-hide="endereco==null">
+          <!-- POSSO USAR ISSO PARA OCULTAR O BOTÃO DE ADICIONAR ENDEREÇO PARA UM DE EDITAR ENDEREÇO -->
+          <h4 align="center"> Confira seus dados! </h4>
+          <br>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Logradouro</span>
+            <input type="text" readonly value="{{endereco.logradouro}}">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Bairro</span>
+            <input type="text" readonly value="{{endereco.bairro}}">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Estado</span>
+            <input type="text" readonly value="{{endereco.uf}}">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Localidade</span>
+            <input type="text" readonly value="{{endereco.localidade}}">
+          </label>
+          <button class="button button-block button-positive" ng-click="doCadastroEndereco()">Cadastrar</button>
+        </ion-list>
+
+
+        <label class="item item-input">
+          <button class="button button-block button-positive" type="submit">Criar</button>
+        </label>
+
+
+      </div>
+    </form>
+
+  </ion-content>
+</ion-view>

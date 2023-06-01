@@ -1,0 +1,190 @@
+
+<ion-view id="lista" ng-controller="CategoriaCtrl"  title="Cardápio"  class="index-app">
+    <link rel="manifest" href="../manifest.json">
+<!-- title="Cardápio - {{mostraHor()}}" <marquee LOOP=4 DIRECTION=RIGHT BEHAVIOR=ALTERNATE> </marquee>  - {{mostraHor()}} " -->
+<style>
+.bgx.active {display:none; }
+</style>
+
+<script id = "my-modalHorario.html" type = "text/ng-template" >
+    <ion-modal-view id="status" class="status-app " >
+            <ion-nav-bar class="roxo" >
+
+                    <ion-nav-buttons side="left">
+                        <button ng-click = "closemodalHorario()" class="button button-icon">
+                    <a><i class="button icon-left ion-ios-arrow-left button-clear button-light"></i> </a>
+                        </button>
+            
+                    </ion-nav-buttons>
+                
+                </ion-nav-bar>
+        <ion-content overflow-scroll="true" has-bouncing="false">
+      <div class="container" align="center">
+          <div style="margin-top:60px;">
+              
+        <h2 style="color:black; font-size:25px;font-family:Segoe Print;"> Horários </h2>
+  <hr>
+      <br>
+      <div style="text-align:left;width:90%;">
+      <b style="color:black; font-size:14px;width:100%"> 
+      Segunda-feira: <b style="float:right;font-size:14px;"> 24 horas. </b> </p>
+      Terça-feira:  <b style="float:right;font-size:14px;"> 24 horas. </b> </p>
+      Quarta-feira: <b style="float:right;font-size:14px;"> 24 horas. </b> </p>
+      Quinta-feira: <b style="float:right;font-size:14px;"> 24 horas. </b> </p>
+      Sexta-feira: <b style="float:right;font-size:14px;"> 24 horas. </b> </p>
+      Sábado: <b style="float:right;font-size:14px;"> 24 horas.  </b>  </p>
+      Domingo:<b style="float:right;font-size:14px;"> 24 horas. </b> </p>
+<p> </p>
+<b> Gostou do APP? Agende uma visita: <p> </p> (17) 3227-1269 <p> </p> E consiga seu próprio APP de entregas.</b>
+      </b>
+      </div>
+
+      <button   class="btnet btn--bevel"  style="margin-top:20px;font-size:16px;width:70%;" ng-click = "closemodalHorario()"> <b> Fechar </b> </button>
+      <div>
+      </div>
+       </ion-content>
+    </ion-modal-view>
+ </script>
+<script>
+/*  $(document).ready(function()
+            {
+                $('.contact').click(function (e) 
+                {
+                    $('.card').toggleClass('active');
+                    $('.bgx').toggleClass('active');
+                    $('.banner').toggleClass('active');
+                    $('.photo').toggleClass('active');
+                    $('.social-media-banner').toggleClass('active');
+                    $('.social-media-banner3').toggleClass('active');
+                    $('.social-media-banner2').toggleClass('active');
+                    $('.email-form').toggleClass('active');  
+                    $('.contact').toggleClass('active');  
+                    var buttonText = $('button.contact#main-button').text();
+                    if (buttonText === 'Fechar')
+                    {
+                        buttonText = 'Confira nossos horários';
+                        $('button.contact#main-button').text(buttonText);
+                    }
+                    else
+                    {
+                        buttonText = 'Fechar';
+                        $('button.contact#main-button').text(buttonText);
+                    }
+                });
+            }); */
+            //turn on to make the photo follow mouse
+            // $(document).ready(function()
+            // {
+            //     $(document).mousemove(function( event ) 
+            //     {
+            //         var docWidth = $(document).width();
+            //         var docHeight = $(document).height();
+            //         var xValue = (event.clientX/docWidth)*100;
+            //         var yValue = (event.clientY/docHeight)*100;
+            //         $('.photo').css('background-position', xValue+'%,'+yValue+'%');
+            //     });
+            // });
+            </script> 
+
+<ion-nav-bar class="roxo" >
+
+    <!--<ion-nav-buttons side="right" >
+       <button ng-click="Ircarrinho()" ng-show="loggedin_id" class="button button-icon">
+            <i ng-class="getClass()"></i>
+        </button>
+    </ion-nav-buttons> -->
+</ion-nav-bar>  
+
+<ion-content class="has-header" overflow-scroll="false" has-bouncing="true">
+
+    <!-- adminCtrl -->
+    <ion-list>
+
+        <!-- showAdmins -->
+
+      <!--  <ion-item class="card" ng-click="pegarID('')"> -->
+            <!-- href="#/produtos/{{x.id}}" talvez seja possivel se eu armazenar o id da categoria no storage e pegar o id na proxima tela para usar como filtro.. -->
+          <!--  <div class="info-card-home">
+                <div class="row">
+                    <div class="col col-5 left">
+                        <h2>Todos os produtos</h2>
+                    </div>
+                </div>
+            </div> -->
+            <!--<img ng-src="http://localhost/GerencialDelivery/imagens_categoria/verona.png" class="bg-card" width="100%"> -->
+           <!-- <img ng-src="http://topentregas.com.br/imagens/logoAtalos.jpg" class="bg-card" width="100%" />
+        </ion-item> -->
+
+        <div class="carder" align="center">
+            
+                <div class="photo"></div>
+               <!-- <div class="social-media-banner3" style="width:97%;padding:5px;"> <b style="font-size:25px;color:black;">{{mostraHor()}}</b> </div>  -->
+              
+                <div align="center" class="banner"></div>
+              
+              <form class="email-form" style="width:100%;background-color:black;">
+                <br>
+                    <!-- <input id="name" type="text" placeholder="name">
+                    <input id="email" type="text" placeholder="email">
+                    <textarea id="comment" type="text" placeholder="comment"></textarea> -->
+                    <div align="center" style="font-size:15px;width:100%;font-family:arial;color:white;" >
+                        <p>  <b> Segunda-feira: </b> </p>  <p>  <b>  11:00 às 15:30  </b> </p> 
+                        <p>  <b> Terça a Sexta: </b> </p>  <p>  <b>  11:00 às 15:30 / 19:00 às 23:30  </b> </p> 
+                        <p>  <b> Sábado e Domingo: </b> </p>  <p>  <b>  19:00 às 23:30  </b> </p> 
+                       <!-- <p>  <b> Segunda: 10:30 às 15:30 / 19:00 às 23:30 </b> </p>
+                        <p>  <b> Terça: 10:30 às 15:30 / 19:00 às 23:30 </b></p>
+                            <p> <b> Quarta: 10:30 às 15:30 / 19:00 às 23:30 </b></p>
+                                <p> <b> Quinta: 10:30 às 15:30 / 19:00 às 23:30 </b></p>
+                                    <p> <b> Sexta: 10:30 às 15:30 / 19:00 às 23:30 </b></p>
+                                    <p> <b> Sábado:  19:00 às 23:30 </b></p>
+                                    <p> <b> Domingo:  19:00 às 23:30 </b></p> -->
+  
+                    <div>
+</div>
+                </div>
+              </form>
+            <div class="social-media-banner2" style="width:97%;padding:5px;display:none;">
+                  <button class="contact" >  Horários de Funcionamento </button>   
+                </div>   
+                <div class="social-media-banner2" style="width:97%;padding:5px;color:black;">
+                    <button ng-click="openmodalHorario()" class="btnet btn--bevel" style="width:60%;height:99%;font-family:arial;font-size:14px;"> <b> HORÁRIOS </b> </button>   
+                  </div>   
+
+                   <div class="social-media-banner" style="width:97%;padding:5px;">  
+                        <a href="https://pt-br.facebook.com/atalosriopreto"><i style="color:black;" class="fab fa-facebook"></i></a>
+            
+                    <!--  <a href="https://www.google.com/maps/place/ATALOS+Solu%C3%A7%C3%B5es+Sustent%C3%A1veis+-+Alvar%C3%A1+Bombeiros,+CETESB,+IBAMA,+Acessibilidade+e+Outorgas/@-20.8190499,-49.3790937,17z/data=!4m19!1m13!4m12!1m4!2m2!1d-49.3768776!2d-20.8166025!4e1!1m6!1m2!1s0x94bdadeac24a2505:0x55696052cb2e441d!2satalos!2m2!1d-49.3790257!2d-20.8216164!3m4!1s0x94bdadeac24a2505:0x55696052cb2e441d!8m2!3d-20.8216164!4d-49.3790257"><i style="color:black;" class="fas fa-map-marked-alt"></i></a> -->
+                 </div> 
+              </div>
+          <br>
+        <ion-item class="card" ng-repeat="x in  showCategorias | filter:{ situacao_id: '1'} | filter:{ empresa: Empresa.numero} | orderBy: predicate " ng-click="pegarID({{x.id}}, {{x.semObs}})">
+            <!-- href="#/produtos/{{x.id}}" talvez seja possivel se eu armazenar o id da categoria no storage e pegar o id na proxima tela para usar como filtro.. -->
+            <div class="info-card-home">
+                <div class="row">
+                    <div class="col col-5 left">
+                        <h2> {{x.nome}}</h2>
+                    </div>
+                </div>
+                <!--<img ng-src="http://localhost/GerencialDelivery/imagens_categoria/{{x.imagens}}" class="bg-card" width="100%"> -->
+                <img 
+                    ng-src="https://topentregas.com.br/imagens_categoria/{{x.imagens}}" 
+                    class="bg-card" 
+                    width="100%"
+                    ng-image-appear
+                    responsive
+                    placeholder
+                    loader-img="img/imagePreloader.gif"
+                    loader-styles="width: 240px; height: 120px; left: calc((100% - 120px) / 2); top: calc((100% - 120px) / 2);"
+                    style="height:28vw;"
+                />
+            </div>
+
+            <!-- <a class="button button-icon icon ion-ios-trash-outline" ng-click="delCategoria({{x.id}})"></a> -->
+
+        </ion-item>
+
+    </ion-list>
+
+</ion-content>
+</ion-view>
+

@@ -1,0 +1,38 @@
+<ion-view  id="cadastro-empresa" title="Alterar senha" class="produtos-app">
+                <ion-nav-bar class="roxo">
+                    <ion-nav-buttons side="left">
+                        <button ng-controller="PerfilCtrl" ng-click="goBack()" class="button button-icon">
+                            <i class="button icon-left ion-ios-arrow-back button-clear button-light"> <b class="voltarText">Voltar</b> </i>
+                        </button>
+                    </ion-nav-buttons>
+                </ion-nav-bar>
+
+
+        <form class="login-form" ng-submit="editAdminSenha()" ng-controller="AdminCtrl">
+    
+        <ion-content style="padding: 60px 40px 40px 40px">
+    
+            <ion-list class="login-app">
+                    <input type="hidden" ng-model="adminData.id">
+                <div class="item-form">
+                    <label class="item-input-coletivando item-floating-label"
+                    ng-class="{'has-errors' : (passwordForm.txtSenha.$invalid && !passwordForm.txtSenha.$pristine) || (passwordForm.txtSenha.$invalid && submitted), 'no-errors' : passwordForm.txtSenha.$valid}">
+                        <span class="input-label">Senha nova</span>
+                        <input data-ng-minlength="6"  id="txtSenha" ng-required="true" name="txtSenha" type="password" placeholder="Senha nova | Minimo 6 digitos |" ng-model="adminData.senha"/>
+                    </label>
+                </div>
+    
+                 <div class="item-form">
+                    <label class="item-input-coletivando item-floating-label"
+                    ng-class="{'has-errors' : (passwordForm.txtConfirmarSenha.$invalid && !passwordForm.txtConfirmarSenha.$pristine) || (passwordForm.txtConfirmarSenha.$invalid && submitted), 'no-errors' : passwordForm.txtConfirmarSenha.$valid}">
+                        <span class="input-label">Confirmar senha</span>
+                        <input data-ng-minlength="6" id="txtConfirmarSenha" ng-required="true" name="txtConfirmarSenha" type="password" placeholder="Confirmar senha" ng-model="adminData.novasenha" class="validate[required]"/>
+                    </label>
+                </div>
+                <div align="center">
+                <button type="submit" class="btnet btn--bevel margin-top" style="font-size:18px;width:80%;" ng-disabled="passwordForm.$invalid">Alterar Senha</button>
+            </div>
+            </ion-list>
+        </form>
+      </ion-content> 
+    </ion-view>

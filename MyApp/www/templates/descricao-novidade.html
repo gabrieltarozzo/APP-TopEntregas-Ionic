@@ -1,0 +1,64 @@
+<ion-view id="descNov" title="Novidade!" class="index-app">
+    <ion-nav-bar class="roxo">
+
+        <ion-nav-buttons side="left">
+            <button ng-click="showPesquisa()" class="button button-icon">
+ 
+                <a href="#/tab/index" class="voltarA">
+                    <i class="button icon-left ion-ios-arrow-left button-clear button-light"> <b class="voltarText">Voltar</b> </i>
+                </a>
+              
+            </button>
+        </ion-nav-buttons>
+
+    </ion-nav-bar>
+
+    <ion-content class="has-header" overflow-scroll="false" has-bouncing="true" scroll="true">
+
+        <!-- adminCtrl -->
+        <ion-list ng-controller="NovidadeCtrl">
+            <!-- showAdmins -->
+            <ion-item class="typecard ">
+
+                <div class="info-card-home">
+
+                </div>
+               <!-- <img ng-src="http://localhost/GerencialDelivery/imagens_novidades/{{loggedin_imagens_novidade}}" class="bg-card" width="100%"> -->
+                <img ng-src="https://topentregas.com.br/imagens_novidades/{{loggedin_imagens_novidade}}" class="bg-card" width="100%" />
+                </div>
+
+            </ion-item>
+
+
+
+            <ion-item class="typecard1">
+
+                    <div id="wrapper">
+                        <div id="container">
+
+                        <section class="open-book">
+                            <header>
+                                <h1>{{nomeEmpresaFacilUp}}</h1>
+                                <h6>{{nomeEmpresaFacildown}}</h6>
+                            </header>
+                            <article>
+                                <h2 class="chapter-title titleh2">{{loggedin_nome_novidade}}</h2>
+                                <h2 class="textH">{{loggedin_desc_novidade}}</h2>
+
+                            </article>
+
+                        </section>
+
+                    </div>
+                </div>
+            </ion-item>
+
+
+        </ion-list>
+
+    </ion-content>
+
+
+
+
+</ion-view>

@@ -1,0 +1,107 @@
+<ion-view id="login" title="Editar Perfil" class="login-app">
+
+ 
+  <ion-nav-bar class="roxo">
+
+      <ion-nav-buttons side="left" animation="slide-left-right">
+          <button class="button button-icon">
+              <a href="#/tab/main"  class="voltarA">
+                  <i class="button icon-left ion-ios-arrow-left button-clear button-light"><b class="voltarText">Voltar</b> </i>
+              </a>
+          </button>
+      </ion-nav-buttons>
+  
+  </ion-nav-bar>
+
+
+  <ion-content overflow-scroll="false" has-bouncing="true" ng-controller="PerfilCtrl">
+
+    <form ng-controller="AdminCtrl" class="login-form" >
+       
+      <button ng-click="goAlterarSenha()" type="button" class="button btn btn-minha-conta button-block">
+          <a class="icon-circle icon-key"><i class="ion-key"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;Alterar Senha
+      </button>
+      <hr />
+      <button ng-click="goAlterarNome()"  type="button" class="button btn btn-minha-conta button-block">
+        <a class="icon-circle icon-name"><i class="far fa-edit"></i> </a>&nbsp;&nbsp;&nbsp;&nbsp;Alterar Nome
+    </button>
+    <hr />
+    <button  ng-click="goAlterarTelefone()" type="button" class="button btn btn-minha-conta button-block">
+      <a class="icon-circle icon-cel"><i class="fas fa-mobile-alt"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;Alterar Celular
+  </button>
+  <hr />
+      <br> <br>
+
+        <!-- dar um jeito de esconder esse botao depois de cadastrar -->
+        <!-- tive que remover esse botão, vai ter que ser assim: se usuario não tiver calculo de frete quer dizer que ele não tem endereço, se usuario não tem endereço
+          <div  >
+        <label class="item item-input">
+            <a href="#/endereco" style="width:100%;"><button class="button button-block button-positive">Cadastrar Endereço</button> </a>
+          </label>
+        </div> -->
+
+
+      <!-- ng-hide=""  endereco==null -->
+      <div style="margin-top:5%;">
+        <ion-list ng-repeat="x in showEndereco" ng-show="x.rua!='undefined' || x.rua!='' || x.rua!= null" id="oi">
+          <!-- POSSO USAR ISSO PARA OCULTAR O BOTÃO DE ADICIONAR ENDEREÇO PARA UM DE EDITAR ENDEREÇO -->
+          <ion-item class="card-admin-edit">
+         <b> <h4 class="admin-edit-title-ende segoe" align="center"> Seu Endereço! </h4> </b>
+
+              <hr class="hrcolor">
+            <label align="center" >
+               <h4  class="admin-edit-ende">Rua: {{x.rua}}</h4>
+              <!-- <input  type="text" readonly value="{{x.rua}}">-->
+            </label>
+
+
+            <label align="center">
+              <h4  class="admin-edit-ende">Numero: {{x.numero}}</h4>
+            </label>
+ 
+            <label align="center"  ng-hide="x.complemento=='undefined' || x.complemento==''">
+
+
+             <h4 class="admin-edit-ende">Complemento: {{x.complemento}}</h4>
+            </label>
+
+
+            <label align="center" >
+               <h4 class="admin-edit-ende">Bairro: {{x.bairro}}</h4>
+            </label>
+
+            <label align="center" >
+              <h4 class="admin-edit-ende">Estado: {{x.uf}}</h4>
+            </label>
+
+
+            <label  align="center">
+             <h4 class="admin-edit-ende">Cidade: {{x.cidade}}</h4>
+            </label>
+
+
+            <label align="center" >
+               <h4 class="admin-edit-ende">Celular: {{x.telefone}}</h4> 
+            </label>
+
+
+            <label align="center" >
+            <h4 class="admin-edit-ende">País: {{x.pais}}</h4>
+            </label>
+          </ion-item>
+
+          <div align="center">
+
+            </div>
+              <br>
+              <div align="center">
+            <button ng-click="goAltEnd()" style="width:80%;font-size:18px;" ng-repeat="x in showEndereco | filter:{ id_usuarios: loggedin_id }" ng-show="x.rua!='undefined' || x.rua!='' || x.rua!= null" type="button" class="btnet btn--bevel">
+              Alterar Endereço
+            </button>
+          </div>
+        </ion-list>
+      </div>
+    </form>
+  </ion-content>
+
+</ion-view>

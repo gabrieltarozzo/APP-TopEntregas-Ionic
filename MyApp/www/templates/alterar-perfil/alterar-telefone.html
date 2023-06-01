@@ -1,0 +1,42 @@
+<ion-view id="login" title="Editar Perfil" class="login-app">
+
+
+    <ion-nav-bar class="roxo">
+  
+        <ion-nav-buttons side="left" animation="slide-left-right">
+            <button class="button button-icon">
+                <a href="#/admin-edit" class="voltarA">
+                    <i class="button icon-left ion-ios-arrow-left button-clear button-light"><b class="voltarText">Voltar</b></i>
+                </a>
+            </button>
+        </ion-nav-buttons>
+    
+    </ion-nav-bar>
+  
+  
+    <ion-content overflow-scroll="false" has-bouncing="true" ng-controller="PerfilCtrl">
+  
+      <form ng-controller="AdminCtrl" class="login-form" >
+
+  
+        <div class="list">
+            <h4 class="admin-edit-title"> Alterar seu Nº de celular ?</h4>
+            <input type="hidden" ng-model="adminData.id">
+    
+    
+            <label class="item-input-coletivando item-floating-label">
+                <span class="input-label">Celular</span>
+                <input id="txtCelular" maxlength="15" type="text" placeholder="Novo Nº celular(com DDD)" ng-model="adminData.telefone" ui-br-phone-number-mask required />
+            </label>
+    
+    
+    
+            <div align="center">
+              <button ng-click="editAdminCelular()" ng-disabled="buttonDisabled" class="btnet btn--bevel margin-top" style="font-size:18px;width:80%;" type="submit">Alterar Nº de celular</button>
+            </div>
+ 
+  
+      </form>
+    </ion-content>
+  
+  </ion-view>

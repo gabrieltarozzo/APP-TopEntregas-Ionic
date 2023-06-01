@@ -1,0 +1,10 @@
+{
+  "name": "Top Entregas",
+  "short_name": "Top Entregas",
+  "start_url": "tab/index.html",
+  "theme_color": "#000000",
+  "background_color": "#FFFFFF",
+  "display": "fullscreen",
+  "orientation": "portrait"
+
+}

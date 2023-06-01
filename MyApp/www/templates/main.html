@@ -1,0 +1,40 @@
+<ion-view  title="Seus Status" id="main" class="produtos-app"  >
+<!-- class="produtos2-app" -->
+    <ion-content overflow-scroll="false" has-bouncing="true" >
+
+    <form class="login-form" name="login-form">
+    
+    <ion-list ng-controller="PerfilCtrl" class="login-app" >
+        <h2 style="margin-bottom: 45px;">Painel</h2>
+<!-- admin-edit -->
+      <button  ng-click="goPerfil()" type="button" class="button btn btn-minha-conta button-block">
+          <a class="icon-circle icon-user"><i class="ion-person"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;Perfil: {{loggedin_status_local}}
+      </button>
+      <hr />
+
+      <button  ng-click="goSobreNos()" type="button" class="button btn btn-minha-conta button-block">
+          <a class="icon-circle icon-plus"><i class="ion-clipboard"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;Sobre nós
+      </button>
+      <hr />
+
+      <button  ng-click="goSobreNos()" type="button" class="button btn btn-minha-conta button-block">
+        <a class="icon-circle icon-plusE"><i class="fas fa-tags"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;Cupons
+    </button>
+    <hr />
+
+     <!-- <button ng-click="goRetirada()" type="button" class="button btn btn-minha-conta button-block">
+        <a class="icon-circle icon-ios-cart"><i class="ion-ios-cart"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;Retirada no balcão.
+    </button>
+    <hr / > -->
+
+      <button type="button" ng-controller="AppCtrl" class="button btn btn-minha-conta button-block" ng-click="showSair()">
+          <a class="icon-circle icon-door"><i class="ion-android-exit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;Sair
+      </button>
+      <hr />
+
+
+  </ion-list>
+  </form>
+  </ion-content>
+</ion-view>
+

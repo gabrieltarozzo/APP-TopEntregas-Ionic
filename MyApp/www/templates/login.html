@@ -1,0 +1,52 @@
+<ion-view id="login" title="" class="index-app" style="transform: translate3d(0px, 0px, 0px) scale(1)!important;" >
+    <!--<ion-header-bar align-title="center" class="bar-positive">
+      <h1 class="title">Login</h1>
+    </ion-header-bar> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    
+    <ion-content ng-controller="AppCtrl" class="login-app2" overflow-scroll="false" has-bouncing="true">
+       
+        <form  name="login-form" >
+           
+           <!--  <img src="../img/turbodog.png"  class="" width="100%;" /> --> 
+           <div align="center" style="margin-bottom:-55px;">
+            <div class="logoAPP"></div>
+        </div>
+     
+            <ion-list>
+
+                <label class="item-input-coletivando item-floating-label">
+                    <span class="input-label" style="font-size:18px;"> Email</span>
+                    <input autocomplete='Email' style="font-size:18px;" id="txtEmail" type="text"  placeholder=" Email" ng-model="email" value="{{nomeLogin}}" />
+                </label>
+
+                <label class="item-input-coletivando item-floating-label">
+                    <span class="input-label" style="font-size:18px;"> Senha</span>
+                    <input autocomplete='Senha' style="font-size:18px;" id="txtSenha" type="password" placeholder=" Senha" ng-model="senha"  value="{{senhaLogin}}"  />
+                </label>
+                
+                <button ng-disabled="buttonDisabled" type="submit" ng-click="doLogin()" class="btnet btn--bevel" style="margin-top:50px;width:100%;font-size:20px;">Entrar</button>
+            
+            </ion-list>
+
+        </form>
+
+      <!--    <div style="margin-top:5%" align="center" >
+
+              <button class="btn btn-facebook btn-lg" ng-click="Construcao()"  >
+           <a style="text-decoration:none;color:white; ">  <i class="fab fa-facebook-f " style="margin-right:5%;"></i> Entrar com Facebook    </a> 
+                </button>
+        
+            </div>  -->
+
+        <div class="text-center cadastrar-div">
+            <button class="btnet btn--bevel" style="width:75%;font-size:20px;background-color:rgb(228, 82, 24);" ng-click="VaiParaCadastro()">
+                Cadastre-se
+            </button>
+        </div>
+
+    
+
+   
+    </ion-content>
+</ion-view>

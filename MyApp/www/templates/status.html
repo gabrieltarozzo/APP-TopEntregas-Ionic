@@ -1,0 +1,154 @@
+<ion-view  title="Seus Status" id="status" class="status-app">
+
+    <ion-nav-bar class="roxo">
+
+   </ion-nav-bar> 
+
+   <!-- class="has-header" -->
+   <ion-content class="has-header" overflow-scroll="false" has-bouncing="true" ng-controller="StatusCtrl" >
+           <div align="center">
+         <button  ng-click="att()"  style="margin-top:4%;font-size:18px;width:70%;" class="btnet btn--bevel"> Atualizar! </button>
+           </div>
+       <ion-list >
+           <ion-item align="center" ng-repeat="x in showStatus" style="background:transparent;border:0;">
+
+               <div class="info-card-home">
+       
+                   <div class="roww">
+                          
+                           <script id = "my-modal.html" type = "text/ng-template" >
+                               <ion-modal-view id="status" class="status-app" >
+
+                                  <ion-content class="has-header" overflow-scroll="false" has-bouncing="true" >
+                                      
+                                      <div align="center" style="margin-top:25%;">
+                                       <h2 style="color:black;;font-size:25px;">  Endereço para retirada:   </h2><p></p>
+                                       <h2 style="color:black;;font-size:18px;">  
+                                           <h2 style="color:black;" class="">{{CidadeEnderecoM}}</h2>
+                                           <h2 style="color:black;" class=""> {{BairroEnderecoM}} </h2>
+                                             <h2 style="color:black;" class=""> {{RuaEnderecoM}}</h2>
+                                       
+                                      <!-- <p></p>  --></h2>
+                                       </div>
+
+                                       <div align="center" style="margin-top:15%;">
+                                   <button ng-click = "closeModal()" style="color:white;width:70%;font-size:18px;"  class="btnet btn--bevel"> Fechar </button>
+                                       </div>
+                                       
+                                  </ion-content>
+                               </ion-modal-view>
+                            </script>
+
+                           <!-- fim tentativa modal -->
+
+                           <!-- modal informações do pedido -->
+
+                           <script id = "my-modalPedido.html" type = "text/ng-template" >
+                               <ion-modal-view id="status" class="status-app " >
+                                   <ion-content overflow-scroll="false" has-bouncing="true">
+                                 <div class="container" align="center">
+                                   <div class="card ">
+                                 <div class="card-header">
+                                 
+                                 <strong> <h4 style="color:Maroon;">  Dia: {{formatDate(x.created) | date:'dd/MM/yyyy'}} </h4> 
+                                
+                                   <h4 class="modalPe ">  Status:  {{x.status}} </h4>
+                                 </div>
+
+                                 <h4  class="modalPe " ng-hide="x.id_entrega != 1">Tipo de pedido: Retirada</h4> 
+                                 <h4  class="modalPe " ng-hide="x.id_entrega != 0">Tipo de pedido: Entrega</h4> 
+                                 <div class="card-body">
+                                 
+                                 <div  align="center">
+                                     <h4 style="color:Maroon;" class="center">Código: #{{x.id}}<br><br></h4>
+
+                                     <div style="border-style: dashed; border-width:2px; border-left:none; border-right:none;" >
+                                 <h4 class="center" ng-bind-html="x.nomeProduto" style="color:Maroon;">{{x.nomeProduto}} </h4>
+                                     </div>
+                                     <br>
+                                     <div style="border-style: dashed; border-width:2px;width:50%;" >
+
+                                 <h4 class="center" style="color:Maroon;"> Frete: {{x.frete | currency:'R$'}} </h4>
+                   
+                                <h4> <strong  ><div align="center">Total: {{x.valor | currency:'R$'}}</div> </strong> </h4>
+                   
+
+                                     </div>
+                    
+                          
+                                 <div align="center">
+                               <!--  <button ng-click = "Construcao()" style="color:black;width:80%;" ng-show="x.status != 'Aguardando'" class="button btn btn-green button-block"> Pedir novamente! </button> --> 
+                                 <button ng-click = "closeModalPedido()" style="color:white;width:80%;font-size:18px;margin-top:5%;margin-bottom:5%;"  class="btnet btn--bevel"> Fechar </button>
+                                 </div>
+                                 </div>
+                                 
+                                 </div>
+                                 
+                                 </div>
+                                   
+                                  </ion-content>
+                               </ion-modal-view>
+                            </script>
+                           <!-- fim modal informações do pedido borderino style="background-color:rgb(250, 240, 201);"-->
+                           <ion-item class="typecard1 btnet btn--bevel" >
+                 
+                               <div id="wrapper">
+                                   <div id="container">
+           
+                                   <section class="open-book">
+               
+              <h2> Cliente: {{loggedin_status}}</h2>
+              <br>
+              <h2> Código do pedido: {{x.id}}</h2>
+              <h2> Valor do pedido: {{x.valor | currency:'R$' }}</h2>
+         
+              <div  align="center">
+
+              <b  style="font-size:16px;" ng-class="{'Yellowzim':x.status=='Aguardando','blue':x.status=='Finalizado','green':x.status=='Confirmado','red':x.status=='Cancelado'}"
+              ng-hide="x.status == 'Em Entrega' || x.status == 'Finalizado'">Status do pedido: {{x.status}}</b>
+              <b style="font-size:16px;"  class="green" ng-show="x.status == 'Em Entrega' || x.status == 'Finalizado'">Status do pedido: Confirmado</b>
+              <h2 style="color:green" ng-show="x.status == 'Em Entrega' || x.status == 'Finalizado'"> Seu pedido foi confirmado!</h2>
+
+              <h2 style="color:green" ng-hide="x.status != 'Confirmado'"> Seu pedido foi confirmado!</h2>
+              <!--<h2 style="color:Royalblue" ng-hide="x.status != 'Finalizado'"> Seu pedido foi entregue.</h2> -->
+              <h2 style="color:#696969" ng-hide="x.status != 'Aguardando'"> Seu pedido foi enviado.</h2>
+              <h2 style="color:#696969" ng-hide="x.status != 'Retirada'"> Aguarde confirmação.</h2>
+              <h2 style="color:red" ng-hide="x.status != 'Cancelado'"> Seu pedido foi cancelado.</h2>
+             <br>
+             <!--- <h2 style="color:#2E8B57" ng-hide="x.status != 'Confirmado' || x.status != 'Finalizado' && x.id_entrega != 1"> Tempo médio de preparo: 30 minutos.</h2>
+              <h2 style="color:#2E8B57" ng-hide="x.status != 'Confirmado' || x.status != 'Finalizado' && x.id_entrega != 0"> Tempo médio de entrega: 45 minutos.</h2> -->
+              
+              <h2 style="color:Brown;" ng-hide="x.id_entrega != 1" ng-repeat="j in showEnterprise"> Tempo médio de preparo: {{j.ApxRetirada}} minutos.</h2>
+              <h2 style="color:Brown;" ng-hide="x.id_entrega != 0" ng-repeat="j in showEnterprise"> Tempo médio de entrega: {{j.ApxEntrega}} minutos.</h2> 
+             
+              <br>
+              <div align="center" ng-hide="x.id_entrega != '1'" ng-controller="MyController" ng-click="openModal()">
+                   <button class="btnet btn--bevel" style="color:
+                   DarkSlateGray;background-color:transparent;font-size:15px;"><b>Endereço para retirada </b><p></p><i  class="fas fa-map-marked-alt" style="font-size:20px;color:
+                       DarkSlateGray;"> </i></button> 
+                  </div>
+                  <!-- <br  ng-hide="x.id_entrega != '1'"> -->
+                  <br>
+                  <div align="center"  ng-controller="MyController" ng-click="openModalPedido()">
+                       <button class="btnet btn--bevel" style="color:Maroon;background-color:transparent;font-size:15px;border-color:black;"><b>Ver meu pedido </b><p></p><i  class="fas fa-utensils" style="font-size:20px;color:Maroon;"> </i></button> 
+                      </div>
+                  <br>
+          <!-- <b>   <p style="color:Maroon;" ng-bind="formatDate(x.created) | date:'dd/MM/yyyy'">  </p> </b> -->
+          <b style="color:Maroon;font-size:14px;">  Dia: {{formatDate(x.created) | date: 'dd/MM/yyyy'}}  </b> <p></P>
+          
+
+     </div>
+           </div>
+                               </div>
+      
+
+               </div>
+           </ion-item>
+
+       </ion-list> 
+   </section>
+   </ion-content>
+
+</ion-view>
+
+   

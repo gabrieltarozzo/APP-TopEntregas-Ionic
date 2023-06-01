@@ -1,0 +1,52 @@
+<ion-view id="cadastrar" class="index-app" title="">
+
+    <!-- <ion-header-bar align-title="center" class="bar-positive">
+      <a class="button icon-left ion-ios-arrow-left button-clear button-light" href="#/tab/login"></a>
+      <h1 class="title">Cadastrar Usuario</h1> 
+    </ion-header-bar>-->
+
+    <ion-content class="cadastrar-app" overflow-scroll="false" has-bouncing="true">
+
+        <form ng-submit="createAdmin()" ng-controller="AdminCtrl" class="login-form">
+            <ion-list>
+                <h2 class="text-center">Cadastre-se</h2>
+
+<style>
+.fontecadaster{
+ font-size:18px;
+}
+</style>
+                <label class="item-input-coletivando item-floating-label" style="margin-top:-45px;">
+                    <span class="input-label fontecadaster " >Nome</span>
+                    <input autocomplete='Nome' style="font-size:18px;" ng-required="true" name="nome" id="txtNome" type="text" placeholder="Seu Nome" ng-model="adminData.nome" autofocus />
+                </label>
+              <!--  <label class="item-input-coletivando item-floating-label">
+                    <span class="input-label">Usuario</span>
+                    <input autocomplete='Usuario' ng-required="true" name="nome" id="txtUsuario" type="text" placeholder="Seu Usuario" ng-model="adminData.usuario" />
+                </label> -->
+                <label class="item-input-coletivando item-floating-label">
+                    <span class="input-label fontecadaster">Email</span>
+                    <input autocomplete='email' style="font-size:18px;"  ng-required="true" id="txtEmail" type="email" placeholder="Seu Email" ng-model="adminData.email" />
+                </label>
+                <label class="item-input-coletivando item-floating-label">
+                    <span class="input-label fontecadaster">Senha</span>
+                    <input autocomplete='senha' style="font-size:18px;"  data-ng-minlength="6" ng-required="true" id="txtSenha" type="password" placeholder="Sua Senha (Mínimo 6 Digitos)" ng-model="adminData.senha"
+                    />
+                </label>
+
+                <label class="item-input-coletivando item-floating-label">
+                    <span class="input-label fontecadaster" style="width:100%;">Confirmar Senha</span>
+                    <input autocomplete='confirmarSenha' style="font-size:18px;width:100%;"  data-ng-minlength="6" ng-required="true" id="txtConfirmacaoSenha" type="password" placeholder="Confirmar senha" ng-model="adminData.confirmSenha"
+                    />
+                </label>
+
+<div align="center">              
+      <button ng-disabled="buttonDisabled" class="btnet btn--bevel margin-top" style="width:78%;font-size:20px;">Cadastrar</button>
+</div>
+
+            </ion-list>
+
+        </form>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,61 @@
+<ion-view id="altEnd" class="login-app" title="">
+
+
+    
+    <ion-content class="padding" overflow-scroll="false" has-bouncing="true" ng-controller="DashCtrl">
+        <form>
+            <h3 style="margin-top:10%;"> Por favor cadastre um endereço.</h3>
+            <div class="list">
+                <label class="item-input-coletivando item-floating-label">
+                    <span class="input-label" style="width:100%;">Informe o cep</span>
+                    <input type="text" placeholder="Seu cep" ng-model="cepDigitado" ui-br-cep-mask>
+                </label>
+
+                <button class="btnet btn--bevel margin-top" style="margin-top: 13%;width:100%;font-size:18px;" ng-click="consultarEndereco(cepDigitado)">Consultar Endereço</button>
+                <button ng-disabled="buttonDisabled" class="btnet btn--bevel margin-top" style="margin-top: 5%;width:100%;font-size:18px;" ng-click="agoraNao()">Cadastrar depois!</button>
+            </div>
+               
+            <ion-list ng-hide="endereco==null" >
+                <!-- POSSO USAR ISSO PARA OCULTAR O BOTÃO DE ADICIONAR ENDEREÇO PARA UM DE EDITAR ENDEREÇO -->
+                <h2 style="color:black;font-size:21px;margin-bottom:-20px;width:100%;" align="center"> Confira seus dados! </h2>
+                 <label class="item-input-coletivando item-floating-label">
+                    <span class="input-label">Cidade</span>
+                    <input readonly type="text" value="{{endereco.localidade}}"  placeholder="Digite aqui sua cidade" ng-model="endereco.localidade">
+                </label>
+                  <label class="item-input-coletivando item-floating-label">
+                    <span class="input-label">Estado</span>
+                    <input readonly type="text"  value="{{endereco.uf}}" placeholder="Digite aqui seu estado" ng-model="endereco.uf">
+                </label>
+               <label class="item-input-coletivando item-floating-label">
+                    <span class="input-label">Bairro</span>
+                    <input readonly type="text"  value="{{endereco.bairro}}" placeholder="Digite aqui seu bairro" ng-model="endereco.bairro">
+                </label>
+                <label class="item-input-coletivando item-floating-label">
+                    <span class="input-label">Rua</span>
+                    <input readonly type="text"  value="{{endereco.logradouro}}"  placeholder="Digite aqui sua rua" ng-model="endereco.logradouro">
+                </label>
+
+                <label class="item-input-coletivando item-floating-label placeholderCSS">
+                    <span class="input-label">Numero:</span>
+                    <input type="number" placeholder="Numero de sua casa" value="" ng-model="numero" required>
+                    <!-- required nao funciona, ver metodo para bloquear cadastro se nao tiver numero -->
+                </label>
+                  <label class="item-input-coletivando item-floating-label placeholderCSS">
+                    <span class="input-label">Complemento:</span>
+                    <input type="text" placeholder="Seu complemento (Se tiver)" ng-model="complemento" >
+                </label>
+                
+                 <label class="item-input-coletivando item-floating-label placeholderCSS">
+                    <span class="input-label">Nº do Celular:</span>
+                    <input  maxlength="15" type="text" placeholder="Seu numero de celular (com DDD)" ng-model="phoneNumber" ui-br-phone-number-mask
+                        required>
+                </label>
+
+<div align="center">
+                <button ng-disabled="buttonDisabled" class="btnet btn--bevel margin-top" style="width:78%;font-size:20px;" ng-click="doCadastroEndereco()">Cadastrar</button>
+            </div>       
+            </ion-list>
+     
+        </form>
+    </ion-content>
+</ion-view>

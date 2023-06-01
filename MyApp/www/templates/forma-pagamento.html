@@ -1,0 +1,42 @@
+<ion-view>
+  <ion-header-bar align-title="center" class="bar-positive">
+    <a class="button icon-left ion-ios-arrow-left button-clear button-light" href="#/produtos"></a>
+    <h1 class="title">Forma de Pagamento</h1>
+
+  </ion-header-bar>
+  <ion-content>
+
+    <!-- adminCtrl -->
+    <ion-list ng-controller="ProdutosCtrl">
+      <!-- showAdmins -->
+      <ion-item class="item item-icon-left item-icon-right">
+        <i class="icon ion-information"></i>
+        {{loggedin_id_produto}} {{loggedin_nome_produto}} {{loggedin_desc_produto}} {{loggedin_valor_produto}} {{loggedin_promo_valor_produto}}
+
+
+        <!--<img src="http://localhost/GerencialDelivery/imagens_produtos/{{loggedin_imagens_produto}}" width="50px" height="50px" align="right"> -->
+        <img ng-src="http://topentregas.com.br/imagens_produtos/{{loggedin_imagens_produto}}" class="bg-card" width="100%" />
+
+      </ion-item>
+      Tamanho:
+      <p>
+        Meio a meio? se sim dar um jeito de mostrar maneira de incrementar a outra metade no pedido.
+        <p>
+          Valor Unitario: - 1 +
+          <p>
+            Adicionais: ?
+            <p>
+              Ingredientes: (Work)
+              <p>
+                Observação:
+                <p>
+                  Total:
+                  <p>
+                    <div align="center" style="margin-top:30px;">
+                      <button class="button button-block button-royal">Adicionar ao Carrinho</button>
+                    </div>
+    </ion-list>
+
+
+  </ion-content>
+</ion-view>
